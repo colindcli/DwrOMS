@@ -20,3 +20,11 @@
 - 在sqlserver执行脚本DbScript/DbScript.sql
 - 修改web.config配置数据库链接：<add name="DefaultConnectionString" connectionString="Data Source=服务器;uid=用户名;pwd=密码;database=数据库名;" providerName="System.Data.SqlClient" />
 - 打开首页 http://localhost:8888/ 登录系统，初始化账号978478090@qq.com 密码123456
+
+# 联系我们
+
+![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/contact.png?raw=true)
+
+# 赞助
+
+![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/pay.png?raw=true)
