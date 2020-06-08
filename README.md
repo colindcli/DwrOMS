@@ -23,7 +23,7 @@
 
 # 联系我们
 
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/contact.png?raw=true)
+![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/chat.png?raw=true)
 
 # 赞助
 
