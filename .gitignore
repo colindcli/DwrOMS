@@ -1,2 +1,5 @@
 *.cache
 .vs
+bin
+obj
+Logs
