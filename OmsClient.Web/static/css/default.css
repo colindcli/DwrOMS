@@ -1,0 +1,165 @@
+﻿@import url("../Plugins/layui/css/layui.css");
+@import url("layuiReset.css");
+@import url("jquery-confirm.min.css");
+@import url("../Plugins/adminlte/css/AdminLTE.css");
+@import url("../Plugins/adminlte/css/alt/AdminLTE-without-plugins.min.css");
+@import url("../Plugins/bootstrap/css/bootstrap.min.css");
+@import url("../Plugins/adminlte/css/alt/AdminLTE-select2.min.css");
+@import url("../Plugins/zTree/css/zTreeStyle/zTreeStyle.css");
+@import url("ztree.css");
+@import url("upload.css");
+@import url("/static/fonts/iconfont.css");
+
+html,
+body {
+    background: #ffffff;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.bodyContent {
+    padding: 3px;
+    height: 100%;
+}
+
+.searchBar {
+    margin: 0;
+    overflow-y: auto;
+    background: #eee;
+    padding: 3px 0px;
+}
+
+.lh-30 {
+    line-height: 30px;
+}
+
+.hide {
+    display: none !important;
+}
+
+.jconfirm .jconfirm-box.jconfirm-animation-news {
+    transform: rotate(400deg) scale(0);
+}
+
+.jconfirm .jc-bs3-container {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-bottom: 0 !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 0px !important;
+}
+
+.pt3 {
+    padding-top: 3px !important;
+}
+
+.mt2 {
+    padding-top: 2px !important;
+}
+
+.mt3 {
+    padding-top: 3px !important;
+}
+
+.otherDialog {
+    overflow-x: hidden;
+}
+
+.jconfirm .jconfirm-box div.jconfirm-title-c,
+.jconfirm-content {
+    text-align: left;
+}
+
+.date {
+    width: 100px !important;
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.dateRange {
+    width: 160px !important;
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.bottomSave {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: #f6f6f6;
+    border-top: 1px solid #e8e9ee;
+    padding: 12px;
+    z-index: 9999;
+    text-align: right;
+    padding-right: 18px;
+}
+
+.mb60px {
+    margin-bottom: 60px !important;
+}
+
+.red {
+    color: #f00;
+}
+
+/* reset bootstrap */
+.ml-0 {
+    margin-left: 0px !important;
+}
+
+.mr-0 {
+    margin-right: 0px !important;
+}
+
+.mt-0 {
+    margin-top: 0px !important;
+}
+
+.mb-0 {
+    margin-bottom: 0px !important;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.pb-0 {
+    padding-bottom: 0px !important;
+}
+
+.rowlr {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.edui-editor-body .edui-body-container,
+.edui-container {
+    width: 100% !important;
+}
+
+.datetime {
+    width: 160px;
+}
+
+.iconwuxiao_huaban{
+    color: coral;
+}
+.iconyouxiao{
+    color: green;
+}
+.iconjinyong{
+    color: red;
+}

@@ -1,0 +1,200 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="static/css/loading.css" rel="stylesheet">
+    <link type="text/css" href="static/css/jquery-confirm.min.css" rel="stylesheet">
+    <link type="text/css" href="static/Plugins/bui/css/dpl-min.css" rel="stylesheet">
+    <link type="text/css" href="static/Plugins/bui/css/bui-min.css" rel="stylesheet">
+    <link type="text/css" href="static/Plugins/bui/css/main-min.css" rel="stylesheet">
+    <style>
+        .header,
+        .dl-main-nav {
+            background: none !important;
+            background-color: #337ab7 !important;
+        }
+
+        .dl-title a {
+            color: #ffffff !important;
+        }
+
+        .dl-main-nav {
+            background: #d2d6de !important;
+        }
+
+        .bui-menu-item-selected em {
+            background: none !important;
+            background-color: #707c94 !important;
+        }
+
+        .bui-side-menu .menu-leaf a em {
+            line-height: 19px !important;
+        }
+
+        .nav-item-inner {
+            padding: 4px 0 0 3px !important;
+        }
+
+        .tab-item-title {
+            margin-left: -25px !important;
+        }
+
+        .dl-selected .nav-home,
+        .dl4-hide-list .nav-home {
+            background-position: 9px -424px !important;
+        }
+
+        .dl-log {
+            padding: 6px 16px 0 0 !important;
+        }
+
+        .dl-title {
+            line-height: 30px !important;
+        }
+
+        .nav-list .dl-selected .nav-item-inner {
+            color: #333 !important;
+        }
+
+        .bui-side-menu .bui-menu-title {
+            color: #444 !important;
+        }
+
+            .bui-side-menu .bui-menu-title s {
+                margin-top: 3px !important;
+            }
+
+        .bui-nav-tab-item {
+            color: #666666 !important;
+        }
+
+        .layui-layer-title {
+            text-align: left;
+        }
+
+        .jconfirm .jconfirm-box div.jconfirm-title-c,
+        .jconfirm-content {
+            text-align: left;
+        }
+    </style>
+    <script>
+        window.bch = @(Config.IsBuyCheck?1:0);
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="dl-title">
+            <a href="/" title target="_blank">
+                <span class="dl-title-text">后台管理系统</span>
+            </a>
+        </div>
+        <div class="dl-log">
+            <span>
+                <a href="javascript:;" id="changePwd" style="color:#c1d5ec;">修改密码</a>
+            </span> |
+            <span class="dl-log-user" id="userInfo"></span>
+            <a class="dl-log-quit" id="logout" href="javascript:;" title="退出系统">[退出]</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="dl-main-nav">
+            <div class="dl-inform">
+                <div class="dl-inform-title">
+                    贴心小秘书
+                    <s class="dl-inform-icon dl-up"></s>
+                </div>
+            </div>
+            <ul class="nav-list ks-clear" id="J_Nav"></ul>
+        </div>
+        <ul class="dl-tab-conten" id="J_NavContent"></ul>
+    </div>
+
+    <div id="loading" class="hide" style="width: 60px;height: 50px;position: absolute;top: 35px;right: 0px;">
+        <span class="loader loader-bars">
+            <span></span>
+        </span>
+    </div>
+
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/Plugins/layui/layui.all.js"></script>
+    <script src="static/js/jquery-confirm.min.js"></script>
+    <script src="static/js/jquery-ext-user.js"></script>
+
+    <script src="static/Plugins/bui/js/bui-min.js"></script>
+    <script src="static/Plugins/bui/js/config-min.js"></script>
+
+    <script>
+        $(function () {
+            window.loadingfn = function (show) {
+                if (show) {
+                    $("#loading").removeClass('hide');
+                } else {
+                    $("#loading").addClass('hide');
+                }
+            };
+
+            //menu
+            $.postdata('/clientApi/UserMain/GetMainMenu', {}, function (res) {
+                var arr = [];
+                $.each(res,
+                    function (i, item) {
+                        if (i === 0) {
+                            arr.push(
+                                '<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">' +
+                                item.text +
+                                '</div></li>');
+                        } else {
+                            arr.push('<li class="nav-item"><div class="nav-item-inner nav-order">' +
+                                item.text + '</div></li>');
+                        }
+                    });
+                $("#J_Nav").html(arr.join(''));
+                if (res.length > 0) {
+                    BUI.use('common/main', function () {
+                        new PageUtil.MainPage({
+                            modulesConfig: res
+                        });
+                    });
+                }
+            });
+
+            //info
+            $.postdata('/clientApi/UserMain/GetUserInfo', {},
+                function (res) {
+                    $("#userInfo").text("账号:" + res.UserEmail + " | 角色:" + res.UserRoleName + " | 姓名:" + res.UserChnName + "(" + res.UserNickName + ")");
+                });
+
+            //logout
+            $('#logout').on("click",
+                function () {
+                    $.postdata('/clientApi/UserMain/Logout', {},
+                        function () {
+                            window.location.href = '/login';
+                        });
+                });
+
+            // 修改密码
+            $('#changePwd').on("click", function () {
+                layer.open({
+                    type: 2,
+                    area: ['300px', '300px'],
+                    title: '修改密码',
+                    resize: true,
+                    anim: 1,
+                    maxmin: true,
+                    content: 'password.html',
+                });
+
+            })
+        });
+    </script>
+</body>
+
+</html>

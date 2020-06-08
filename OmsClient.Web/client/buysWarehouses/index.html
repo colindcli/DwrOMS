@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="layui-tab layui-tab-card" lay-filter="tabFilter">
+            <ul class="layui-tab-title">
+                <li class="layui-this"><span class="iconfont icondingdanchuli"></span>待入库<span class="num numop">-</span></li>
+                <li><span class="iconfont icondingdanchuli"></span>已入库<span class="num">-</span></li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;"></div>
+        </div>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script>
+        $(function () {
+            var objTab = {
+                version: '20191209',
+                init: function () {
+                    var self = this;
+                    self.iframe();
+                    element.on('tab', function (data) {
+                        self.tab(data.index);
+                    });
+                    self.tab(0);
+                },
+                iframe: function(){
+                    var self = this;
+                    var len = $('.layui-tab-title li').length;
+                    var arr = ['<div class="layui-tab-item layui-show"><iframe></iframe></div>'];
+                    for(var i = 1;i<len;i++){
+                        arr.push('<div class="layui-tab-item"><iframe></iframe></div>');
+                    }
+                    $('.layui-tab-content').html(arr.join(''));
+                },
+                tab: function (index) {
+                    var self = this;
+
+                    var href = '';
+                    switch(index){
+                        case 0:{
+                            href = 'warehouseBuyOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 1:{
+                            href = 'warehouseBuyFinishOrder.html?v='+self.version;
+                            break;
+                        }
+                    }
+                    $('.layui-tab-content .layui-tab-item').eq(index).find('iframe').attr('src', href);
+                }
+            }
+            objTab.init();
+
+            //统计数量
+            var objNum = {
+                init: function(){
+                    var self = this;
+                    self.request();
+                    setInterval(() => {
+                        self.request();
+                    }, 60000);
+                },
+                request: function(){
+                    $.getdata('/clientApi/WarehouseBuyOrder/GetMyOrderNumber', {}, function(res){
+                        $('.layui-tab-title .num').each(function(i, item){
+                            $(this).text(res[i]);
+                        });
+                    });
+                }
+            }
+            objNum.init();
+            
+            //刷新
+            window.reloadNum = objNum.request;
+        });
+    </script>
+</body>
+
+</HTML>

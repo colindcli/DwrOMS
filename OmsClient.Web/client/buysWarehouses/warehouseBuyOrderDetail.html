@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody" id="orderBody"></div>
+
+        <div class="orderFooter">
+            <div class="col-xs-4 col-sm-4 col-md-4 mt2">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 mt2 lh-30">
+                <button id="btnStockIn" class="btn btn-success btn-sm pull-right"  type="submit" lay-submit
+                    lay-filter="postBtnFilter">入库</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 选中项 -->
+    <script id="SelectItem" type="text/html">
+        {{# if(d.IsNewAdd) { }}
+        <div><input type="checkbox" class="selectRow" data-id="{{ d.BuyOrderProductId }}" lay-ignore /></div>
+        {{# } else { }}
+        <div class="isNewRow">-</div>
+        {{# } }}
+    </script>
+
+    <!-- 入库 -->
+    <div class="otherDialog hide" id="stockIn">
+        <form class="form-horizontal layui-form" lay-filter="stockInFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>质检人员</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="StockInQcUserName" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">质检备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="StockInRemark" placeholder=""></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit lay-filter="stockInBtnFilter">开始入库</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/warehouseBuyOrderDetail.js?v=20191209"></script>
+</body>
+
+</HTML>

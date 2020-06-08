@@ -1,0 +1,222 @@
+
+/* 热门行业 */
+.hot-box {
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.h-stitle {
+    font-size: 18px;
+    color: #777777;
+    margin-top: 18px;
+    margin-bottom: 84px;
+    text-align: center;
+}
+
+.title-icon {
+    vertical-align: middle;
+    margin-left: 26px;
+    margin-right: 26px;
+    position: relative;
+    top: -5px;
+}
+
+
+.hot-title {
+    width: 398px; 
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.hot-title1 {
+    width: 398px; 
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.tabactive1 {
+    height: 146px;
+    padding-top: 20px;
+    background:rgba(240,241,245,1);
+    border-radius:0px 35px 0px 35px;
+}
+
+.tabactive {
+    height: 146px;
+    padding-top: 20px;
+    background: #F5F6F9;
+    border-radius:0px 35px 0px 35px;
+}
+
+.hot-tab-title {
+    line-height: 40px;
+    font-size: 20px;
+    color: #111111;
+}
+
+.tabtitle {
+    font-size: 22px; 
+    /* font-weight: bold; */
+}
+
+.hot-desc {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.hot {
+    width:48px;
+    height:20px;
+    background:linear-gradient(-90deg,rgba(231,40,40,1),rgba(242,96,96,1));
+    border-radius:0px 10px 0px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    margin-left: 8px;
+}
+
+.hot-desc {
+    width: 260px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #777777;
+    margin-left: 96px; 
+}
+
+
+/* 轮播 */
+.dot-box {
+    width: 62px;
+    margin: 10px auto;
+}
+
+.dot,.dot1 {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    margin-right: 10px;
+    background:rgba(223,225,232,1);
+    list-style: none;
+}
+
+.dot:nth-child(4),.dot1:nth-child(4) {
+    margin-right: 0;
+}
+
+
+.activedot {
+    background:red;
+}
+
+.activedot1 {
+    background:red;
+}
+
+.rf {
+    float: right;
+}
+
+.slide-title {
+    text-align: center;
+    font-size: 24px;
+    color: #111111;
+    line-height: 40px;
+}
+
+.slide-desc {
+    width: 574px;
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #777777;
+    line-height: 24px;
+    
+}
+
+.hot-content-list {
+    width: 742px;
+}
+
+.hot-content {
+    overflow: hidden;
+}
+
+.slide-item {
+    width: 742px;
+}
+
+.slide-left,.slide-right {
+    width: 3710px;
+    left: 0;
+}
+
+/* 传统行业 */
+.slide-bg {
+    width: 100%;
+    background: #F7F8FA;
+}
+
+
+/* 定制行业 */
+.nv-customerMade {
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 152px;
+}
+
+.nv-btitle,.h-title {
+    font-size: 30px;
+    color: #111111;
+    line-height: 30px;
+    /* font-weight: bold; */
+    text-align: center;
+    padding-top: 90px;
+}
+
+.nv-cus-item {
+    width: 230px;
+    margin-right: 80px;
+}
+
+.nv-cus-item:nth-child(4) {
+    margin-right: 0;
+}
+
+.lf {
+    float: left;
+}
+
+.clearfix {
+    overflow: hidden;
+}
+
+.nv-cus-title {
+    font-size: 24px;
+    color: #111111;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.nv-cus-desc {
+    font-size: 16px;
+    color: #777777;
+    line-height: 24px;
+}
+
+.cus-img {
+    width: 118px;
+    height: 118px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 90px;
+    margin-bottom: 45px;
+}

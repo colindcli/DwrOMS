@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title>列表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .box-body {
+            margin-bottom: 56px;
+        }
+
+        .box-footer {
+            position: fixed;
+            bottom: 0px;
+            z-index: 99999;
+            width: 100%;
+            background: #f6f6f6;
+            border-top: 1px solid #e8e9ee;
+        }
+
+        .disRow {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-7 col-sm-7 col-md-7 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">分类</label>
+                    <select class="form-control pt3 mr-2" name="CategoryId" lay-ignore></select>
+
+                    <label class="mr-2">关键词</label>
+                    <input class="form-control input-sm mr-2" name="keyword" type="text" autofocus="autofocus" />
+
+                    <button class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+                </form>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 mt2">
+                <select class="form-control pt3 w150 pull-right" id="SalePrice" lay-ignore>
+                    <option value="1">默认：售价1</option>
+                    <option value="10">默认：售价10</option>
+                    <option value="100">默认：售价100</option>
+                </select>
+            </div>
+        </div>
+
+        <table id="tableList"></table>
+    </div>
+
+    <!-- 操作 -->
+    <script id="operator" type="text/html">
+        <button class="btn btn-primary btn-xs" type="button" lay-event="addPro">选择</button>
+    </script>
+    
+    <!-- 区域，设置已添加为灰色 -->
+    <script id="AreaPosition" type="text/html">
+        {{#  if(d.IsAdded) { }}
+        <div class="disRow">{{ d.AreaPosition }}</div>
+        {{#  } else { }}
+        <div>{{ d.AreaPosition }}</div>
+        {{#  } }}
+    </script>
+
+    <div class="optDiv hide" id="optDiv">
+        <a href="javascript:;" class="optClose">关闭</a>
+        <form class="form-horizontal layui-form" lay-filter="optDivFormFilter" action="javascript:;">
+            <div class="optRow clearfix">
+                <span class="optTxt">数量：</span>
+                <input class="optVal" name="Qty" value="" required lay-verify="required|number" />
+            </div>
+            <div class="optRow clearfix">
+                <span class="optTxt">售价：</span>
+                <input class="optVal" name="Price" value="" required lay-verify="required|price" />
+            </div>
+            <div class="optRow optRowRe clearfix">
+                <span class="optTxt">备注：</span>
+                <textarea class="optRemark" name="Remark"></textarea>
+            </div>
+            <div class="optRow">
+                <button class="btn btn-primary btn-sm w-100" type="submit" lay-submit
+                    lay-filter="optDivBtnFilter">添加[enter]</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script src="../static/Plugins/selectTree/selectTree.js"></script>
+
+    <script src="js/mySaleProductSelect.js?v=20191209"></script>
+</body>
+
+</HTML>

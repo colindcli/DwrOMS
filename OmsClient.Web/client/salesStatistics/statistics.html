@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        thead,
+        tfoot {
+            background: #f2f2f2;
+        }
+        .viewOrder{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">用户</label>
+                    <select class="form-control" name="UserId" lay-ignore>
+                    </select>
+                    <label class="mr-2">开始日期</label>
+                    <input class="form-control date" name="BeginDatetime" type="text" required lay-verify="required" />
+                    <label class="mr-2">结束日期</label>
+                    <input class="form-control date" name="EndDatetime" type="text" required lay-verify="required" />
+
+                    <button id="btnSearch" class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+
+                    <a href="javascript:;" id="lastMonth">上月</a>
+                    <a href="javascript:;" id="thisMonth">本月</a>
+                </form>
+            </div>
+        </div>
+
+        <table id="statiList" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="5" style="text-align:center;">销售员估算</td>
+                    <td colspan="4" style="text-align:center;">财务实收</td>
+                    <td style="width: 120px;"></td>
+                </tr>
+                <tr>
+                    <th width="50px">序号</th>
+                    <th>单号</th>
+                    <th>业务员</th>
+                    <th>预算运费</th>
+                    <th>预算费用</th>
+                    <th>折扣</th>
+                    <th>产品</th>
+                    <th>应收小计</th>
+
+                    <th>收款总计</th>
+                    <th>实付运费</th>
+                    <th>收款费用</th>
+                    <th>实收总计</th>
+
+                    <th>完成日期</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">汇总：</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script>
+        $(function () {
+            var obj = {
+                dt: [],
+                init: function () {
+                    var self = this;
+                    self.user();
+                    self.search();
+                },
+                user: function () {
+                    var self = this;
+                    $.getdata('/clientApi/SaleStatistics/GetUserList', {}, function (res) {
+                        //
+                        self.dt = res.Dates;
+
+                        //
+                        var arr = ['<option value="">全部</option>'];
+                        $.each(res.Row, function (i, item) {
+                            arr.push('<option value="' + item.UserId + '">' + item
+                                .UserName + '</option>')
+                        });
+                        $('[name="UserId"]').html(arr.join(''));
+
+                        //
+                        $('[name="BeginDatetime"]').val(self.dt[2]);
+                        $('[name="EndDatetime"]').val(self.dt[3]);
+
+                        $('#btnSearch').click();
+
+                        self.event();
+                    });
+                },
+                event: function () {
+                    var self = this;
+                    $('#lastMonth').unbind('click').on('click', function () {
+                        $('[name="BeginDatetime"]').val(self.dt[0]);
+                        $('[name="EndDatetime"]').val(self.dt[1]);
+                        $('#btnSearch').click();
+                    });
+                    $('#thisMonth').unbind('click').on('click', function () {
+                        $('[name="BeginDatetime"]').val(self.dt[2]);
+                        $('[name="EndDatetime"]').val(self.dt[3]);
+                        $('#btnSearch').click();
+                    });
+                },
+                search: function () {
+                    var self = this;
+                    form.on("submit(searchFormFilter)", function (data) {
+                        $.postdata("/clientApi/SaleStatistics/GetSaleStatisticsResults", data.field,
+                            function (res) {
+                                self.body(res.Rows);
+                                self.foot(res.Total);
+                            });
+                        return false;
+                    });
+                },
+                body: function (rows) {
+                    var self = this;
+                    var arr = [];
+                    $.each(rows, function (i, item) {
+                        arr.push('<tr>');
+                        arr.push('<td>' + (i + 1) + '</td>');
+                        arr.push('<td class="viewOrder" data-id="'+item.SaleOrderId+'">' + item.SaleOrderNumber + '</td>');
+                        arr.push('<td>' + item.UserName + '</td>');
+
+                        arr.push('<td>￥' + item.ShipFeight + '</td>');
+                        arr.push('<td>￥' + item.ShipFee + '</td>');
+                        arr.push('<td>￥' + item.Discount + '</td>');
+                        arr.push('<td>￥' + item.Product + '</td>');
+                        arr.push('<td>￥' + item.Amount + '</td>');
+
+                        arr.push('<td>￥' + item.RealRecive + '</td>');
+                        arr.push('<td>￥' + item.RealFeight + '</td>');
+                        arr.push('<td>￥' + item.RealFee + '</td>');
+                        arr.push('<td>￥' + item.RealTotal + '</td>');
+
+                        arr.push('<td>' + item.DateTime.ToDatetime() +
+                            '</td>');
+                        arr.push('</tr>');
+                    });
+                    $('#statiList tbody').html(arr.join(''));
+
+                    $('.viewOrder').unbind('click').on('click', function(){
+                        self.view({
+                            SaleOrderNumber: $(this).text(),
+                            SaleOrderId: $(this).data('id'),
+                        });
+                    });
+                },
+                foot: function (item) {
+                    var self = this;
+                    var arr = [];
+
+                    arr.push('<tr>');
+                    arr.push('<td colspan="3">汇总：</td>');
+
+                    arr.push('<td>￥' + item.ShipFeight.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.ShipFee.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.Discount.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.Product.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.Amount.toFixed(2) + '</td>');
+
+                    arr.push('<td>￥' + item.RealRecive.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.RealFeight.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.RealFee.toFixed(2) + '</td>');
+                    arr.push('<td>￥' + item.RealTotal.toFixed(2) + '</td>');
+
+                    arr.push('<td></td>');
+                    arr.push('</tr>');
+
+                    $('#statiList tfoot').html(arr.join(''));
+                },
+                view: function(data){
+                    win.iframe({
+                        title: "查看订单："+data.SaleOrderNumber,
+                        url: 'statisticsOrderDetail.html?saleOrderId='+data.SaleOrderId,
+                        done: function () {
+                            //
+                        },
+                        close: function(){
+                            
+                        }
+                    });
+                }
+            };
+            obj.init();
+        });
+    </script>
+</body>
+
+</HTML>

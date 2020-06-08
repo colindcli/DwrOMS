@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>分类</title>
+    <link href="../static/Plugins/treetable-lay/treetable.css" rel="stylesheet">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+        .btn-xs{
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-10 col-sm-11 col-md-11 mt2"></div>
+            <div class="col-xs-2 col-sm-1 col-md-1 mt2">
+                <button class="btn btn-primary btn-sm pull-right" id="btnAdd" type="button">添加</button>
+            </div>
+        </div>
+
+        <table class="layui-table" id="auth-table" lay-filter="auth-table"></table>
+    </div>
+
+    <!-- 操作列 -->
+    <script id="auth-state" type="text/html">
+        <a class="btn btn-primary btn-xs" lay-event="add">添加</a>
+        <a class="btn btn-primary btn-xs" lay-event="edit">修改</a>
+        <a class="btn btn-danger btn-xs" lay-event="del">删除</a>
+    </script>
+
+    <!-- 添加 -->
+    <div class="otherDialog hide" id="add">
+        <form class="form-horizontal layui-form" lay-filter="addFormFilter" action="javascript:;">
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>分类名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="CategoryName" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>排序</label>
+                    <div class="col-sm-10">
+                        <input class="form-control w-25" name="Sort" type="text" required lay-verify="required|number" />
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right w-25" type="submit" lay-submit lay-filter="addBtnFilter">保存</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 编辑 -->
+    <div class="otherDialog hide" id="info">
+        <form class="form-horizontal layui-form" lay-filter="editFormFilter" action="javascript:;">
+            <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">隶属节点</label>
+                        <div class="col-sm-10">
+                            <select id="selectParentId" name="CategoryParentId" lay-ignore></select>
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>分类名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="CategoryName" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>排序</label>
+                    <div class="col-sm-10">
+                        <input class="form-control w-25" name="Sort" type="text" required lay-verify="required|number" />
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right w-25" type="submit" lay-submit lay-filter="editBtnFilter">保存</button>
+                <input name="CategoryId" type="hidden" value />
+            </div>
+        </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/Plugins/treetable-lay/treetable.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script src="../static/Plugins/selectTree/selectTree.js"></script>
+
+    <script src="js/userCategory.js?v=20191209"></script>
+</body>
+
+</html>

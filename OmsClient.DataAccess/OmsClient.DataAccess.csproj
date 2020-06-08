@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C93D2113-6F11-4AF1-A8AF-FE388484A17F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OmsClient.DataAccess</RootNamespace>
+    <AssemblyName>OmsClient.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.SimpleCRUD, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Dapper.SimpleCRUD.2.1.0\lib\net45\Dapper.SimpleCRUD.dll</HintPath>
+    </Reference>
+    <Reference Include="DwrUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\DwrUtility.1.1.63\lib\net46\DwrUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="ExecuteSqlBulk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\ExecuteSqlBulk.3.4.0\lib\net46\ExecuteSqlBulk.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminUserDa.cs" />
+    <Compile Include="FileDa.cs" />
+    <Compile Include="Finances\FinanaceBuyPayDa.cs" />
+    <Compile Include="Finances\FinanaceSaleOrderDa.cs" />
+    <Compile Include="Finances\FinanceBuyOrderDa.cs" />
+    <Compile Include="Manages\ManageBuyOrderDa.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="BuyStatisticsDa.cs" />
+    <Compile Include="SaleStatisticsDa.cs" />
+    <Compile Include="UserMainDa.cs" />
+    <Compile Include="Users\Bases\BaseUserAccountDa.cs" />
+    <Compile Include="Users\Bases\BaseUserBuyOrderDa.cs" />
+    <Compile Include="Users\Bases\BaseUserBuyOrderProductDa.cs" />
+    <Compile Include="Users\Bases\BaseUserBuyPayDa.cs" />
+    <Compile Include="Users\Bases\BaseUserBuySupplierDa.cs" />
+    <Compile Include="Users\Bases\BaseUserBuyTrackDa.cs" />
+    <Compile Include="Users\Bases\BaseUserCategoryDa.cs" />
+    <Compile Include="Users\Bases\BaseUserCurrencyDa.cs" />
+    <Compile Include="Users\Bases\BaseUserProductDa.cs" />
+    <Compile Include="Users\Bases\BaseUserSaleConfigDa.cs" />
+    <Compile Include="Users\Bases\BaseUserSaleOrderDa.cs" />
+    <Compile Include="Users\Bases\BaseUserSaleOrderProductDa.cs" />
+    <Compile Include="Finances\FinanaceSaleReceiveDa.cs" />
+    <Compile Include="Warehouses\WarehouseBuyOrderDa.cs" />
+    <Compile Include="Warehouses\WarehouseSaleTrackDa.cs" />
+    <Compile Include="Users\Bases\BaseUserStockInDa.cs" />
+    <Compile Include="Users\Bases\BaseUserStockOutDa.cs" />
+    <Compile Include="Users\Bases\BaseUserUserDa.cs" />
+    <Compile Include="Users\Bases\BaseUserUserRoleDa.cs" />
+    <Compile Include="Users\UserAccountDa.cs" />
+    <Compile Include="Users\UserBuyOrderDa.cs" />
+    <Compile Include="Users\UserBuyOrderProductDa.cs" />
+    <Compile Include="Users\UserBuyPayDa.cs" />
+    <Compile Include="Users\UserBuySupplierDa.cs" />
+    <Compile Include="Users\UserBuyTrackDa.cs" />
+    <Compile Include="Users\UserCategoryDa.cs" />
+    <Compile Include="Users\UserCurrencyDa.cs" />
+    <Compile Include="Users\UserProductDa.cs" />
+    <Compile Include="Users\UserSaleConfigDa.cs" />
+    <Compile Include="Users\UserSaleOrderDa.cs" />
+    <Compile Include="Users\UserSaleOrderProductDa.cs" />
+    <Compile Include="Users\UserStockInDa.cs" />
+    <Compile Include="Users\UserStockOutDa.cs" />
+    <Compile Include="Users\UserUserDa.cs" />
+    <Compile Include="Users\UserUserRoleDa.cs" />
+    <Compile Include="Warehouses\WarehouseSaleOrderDa.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OmsClient.Common\OmsClient.Common.csproj">
+      <Project>{cd283ec6-2dbf-4817-8089-29f480e9a037}</Project>
+      <Name>OmsClient.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OmsClient.Entity\OmsClient.Entity.csproj">
+      <Project>{46527105-e119-414e-b335-adbeafd6f856}</Project>
+      <Name>OmsClient.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .box-body {
+            margin-bottom: 56px;
+        }
+
+        .box-footer {
+            position: fixed;
+            bottom: 0px;
+            z-index: 99999;
+            width: 100%;
+            background: #f6f6f6;
+            border-top: 1px solid #e8e9ee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">用户</label>
+                    <select class="form-control" name="UserId" lay-ignore>
+                    </select>
+                    
+                    <label class="mr-2">分类</label>
+                    <select class="form-control pt3 mr-2" name="CategoryId" lay-ignore></select>
+
+                    <label class="mr-2">开始日期</label>
+                    <input class="form-control date" name="BeginDatetime" type="text" required lay-verify="required" />
+                    <label class="mr-2">结束日期</label>
+                    <input class="form-control date" name="EndDatetime" type="text" required lay-verify="required" />
+
+                    <label class="mr-2">关键词</label>
+                    <input class="form-control input-sm mr-2" name="keyword" type="text" autofocus="autofocus" />
+
+                    <button id="btnSearch" class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+
+                        <a href="javascript:;" id="lastMonth">上月</a>
+                        <a href="javascript:;" id="thisMonth">本月</a>
+                </form>
+            </div>
+        </div>
+
+        <table id="tableList" lay-filter="filterProduct"></table>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script src="../static/Plugins/selectTree/selectTree.js"></script>
+
+    <script src="js/statisticsProduct.js?v=20191209"></script>
+</body>
+
+</HTML>

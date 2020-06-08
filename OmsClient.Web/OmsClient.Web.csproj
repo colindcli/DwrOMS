@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="K:\Packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('K:\Packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="K:\Packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('K:\Packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED28D6C3-C2AC-4475-B1EC-DFAC54B7045C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OmsClient.Web</RootNamespace>
+    <AssemblyName>OmsClient.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\OmsClient.Web.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <!-- 不复制pdb文件 -->
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <!-- 阻止默认的 XML 和 PDB 文件复制到 RELEASE 的输出目录. 如*.dll、*.exe.config、*.exe 扩展名的文件可以被复制-->
+    <AllowedReferenceRelatedFileExtensions>
+    .dll
+    </AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Portable.BouncyCastle.1.8.1.3\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DwrUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\DwrUtility.1.1.63\lib\net46\DwrUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.DependencyCollector.2.6.4\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.6.4\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.6.4\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.Web.2.6.4\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.WindowsServer.2.6.4\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.2.6.4\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Log4NetAppender, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.ApplicationInsights.Log4NetAppender.2.6.4\lib\net45\Microsoft.ApplicationInsights.Log4NetAppender.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.TelemetryCorrelation.1.0.3\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\RazorGenerator.Mvc.2.4.9\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>K:\Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>K:\Packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>K:\Packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\HttpFilterConfig.cs" />
+    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ControllersApi\FinanceBuyOrderController.cs" />
+    <Compile Include="ControllersApi\FinanceBuyPayController.cs" />
+    <Compile Include="ControllersApi\ManageBuyOrderController.cs" />
+    <Compile Include="ControllersApi\FinanceSaleOrderController.cs" />
+    <Compile Include="ControllersApi\BuyStatisticsController.cs" />
+    <Compile Include="ControllersApi\SaleStatisticsController.cs" />
+    <Compile Include="ControllersApi\LoginController.cs" />
+    <Compile Include="ControllersApi\WarehouseBuyOrderController.cs" />
+    <Compile Include="ControllersApi\WarehouseSaleOrderController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductImageController.cs" />
+    <Compile Include="ControllersApi\UserAccountController.cs" />
+    <Compile Include="ControllersApi\UserBuyOrderController.cs" />
+    <Compile Include="ControllersApi\UserBuySupplierController.cs" />
+    <Compile Include="ControllersApi\UserCategoryController.cs" />
+    <Compile Include="ControllersApi\UserController.cs" />
+    <Compile Include="ControllersApi\UserCurrencyController.cs" />
+    <Compile Include="ControllersApi\UserFileController.cs" />
+    <Compile Include="ControllersApi\UserMainController.cs" />
+    <Compile Include="ControllersApi\UserProductController.cs" />
+    <Compile Include="ControllersApi\UserSaleConfigController.cs" />
+    <Compile Include="ControllersApi\UserSaleOrderController.cs" />
+    <Compile Include="ControllersApi\FinanceSaleReceiveController.cs" />
+    <Compile Include="ControllersApi\WarehouseSaleTrackController.cs" />
+    <Compile Include="ControllersApi\UserStockInController.cs" />
+    <Compile Include="ControllersApi\UserStockOutController.cs" />
+    <Compile Include="ControllersApi\UserUserController.cs" />
+    <Compile Include="ControllersApi\UserUserRoleController.cs" />
+    <Compile Include="ControllersBase\BaseApiController.cs" />
+    <Compile Include="ControllersBase\BaseController.cs" />
+    <Compile Include="ControllersBase\BasePageController.cs" />
+    <Compile Include="ControllersBase\BaseUserApiController.cs" />
+    <Compile Include="ControllersBase\BaseUserController.cs" />
+    <Compile Include="Filters\AuthorizeApiFilter.cs" />
+    <Compile Include="Filters\AuthorizeFilter.cs" />
+    <Compile Include="Filters\CompressionApiFilter.cs" />
+    <Compile Include="Filters\CompressionFilter.cs" />
+    <Compile Include="Filters\ErrorHandlerFilter.cs" />
+    <Compile Include="Filters\ExecutePageFilter.cs" />
+    <Compile Include="Filters\HttpErrorAttribute.cs" />
+    <Compile Include="Filters\MenuApiFilter.cs" />
+    <Compile Include="Filters\ResponseCacheFilter.cs" />
+    <Compile Include="Filters\ResponseNoCacheFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="client\buysFinances\financeBuyPaidOrder.html" />
+    <Content Include="client\buysFinances\financeBuyPaidOrderDetail.html" />
+    <Content Include="client\buysFinances\financeBuyPay.html" />
+    <Content Include="client\buysFinances\financeBuyUnpayOrder.html" />
+    <Content Include="client\buysFinances\financeBuyUnpayOrderDetail.html" />
+    <Content Include="client\buysFinances\index.html" />
+    <Content Include="client\buysFinances\js\financeBuyPaidOrder.js" />
+    <Content Include="client\buysFinances\js\financeBuyPaidOrderDetail.js" />
+    <Content Include="client\buysFinances\js\financeBuyPay.js" />
+    <Content Include="client\buysFinances\js\financeBuyUnpayOrder.js" />
+    <Content Include="client\buysFinances\js\financeBuyUnpayOrderDetail.js" />
+    <Content Include="client\buysManages\index.html" />
+    <Content Include="client\buysManages\js\manageBuyCheck.js" />
+    <Content Include="client\buysManages\js\manageBuyCheckDetail.js" />
+    <Content Include="client\buysManages\js\manageBuyChecked.js" />
+    <Content Include="client\buysManages\js\manageBuyCheckedDetail.js" />
+    <Content Include="client\buysManages\manageBuyCheck.html" />
+    <Content Include="client\buysManages\manageBuyCheckDetail.html" />
+    <Content Include="client\buysManages\manageBuyChecked.html" />
+    <Content Include="client\buysManages\manageBuyCheckedDetail.html" />
+    <Content Include="client\buysStatistics\chart.html" />
+    <Content Include="client\buysStatistics\index.html" />
+    <Content Include="client\buysStatistics\js\statisticsOrderDetail.js" />
+    <Content Include="client\buysStatistics\js\statisticsProduct.js" />
+    <Content Include="client\buysStatistics\statistics.html" />
+    <Content Include="client\buysStatistics\statisticsOrderDetail.html" />
+    <Content Include="client\buysStatistics\statisticsProduct.html" />
+    <Content Include="client\buysWarehouses\index.html" />
+    <Content Include="client\buysWarehouses\js\warehouseBuyFinishOrder.js" />
+    <Content Include="client\buysWarehouses\js\warehouseBuyFinishOrderDetail.js" />
+    <Content Include="client\buysWarehouses\js\warehouseBuyOrder.js" />
+    <Content Include="client\buysWarehouses\js\warehouseBuyOrderDetail.js" />
+    <Content Include="client\buysWarehouses\js\warehouseBuyOrderSelect.js" />
+    <Content Include="client\buysWarehouses\warehouseBuyFinishOrder.html" />
+    <Content Include="client\buysWarehouses\warehouseBuyFinishOrderDetail.html" />
+    <Content Include="client\buysWarehouses\warehouseBuyOrder.html" />
+    <Content Include="client\buysWarehouses\warehouseBuyOrderDetail.html" />
+    <Content Include="client\buysWarehouses\warehouseBuyOrderSelect.html" />
+    <Content Include="client\buys\chart.html" />
+    <Content Include="client\buys\index.html" />
+    <Content Include="client\buys\js\myBuyBackOrder.js" />
+    <Content Include="client\buys\js\myBuyCheckedOrder.js" />
+    <Content Include="client\buys\js\myBuyCheckedOrderDetail.js" />
+    <Content Include="client\buys\js\myBuyFinishOrder.js" />
+    <Content Include="client\buys\js\myBuyOrder.js" />
+    <Content Include="client\buys\js\myBuyOrderDetail.js" />
+    <Content Include="client\buys\js\myBuyOrderView.js" />
+    <Content Include="client\buys\js\myBuyProductSelect.js" />
+    <Content Include="client\buys\js\myBuySupplier.js" />
+    <Content Include="client\buys\js\myBuyUncheckOrder.js" />
+    <Content Include="client\buys\js\myBuyUncheckOrderDetail.js" />
+    <Content Include="client\buys\js\myBuyUnfinishOrder.js" />
+    <Content Include="client\buys\js\myBuyUnpayOrder.js" />
+    <Content Include="client\buys\js\myBuyUnstockInOrder.js" />
+    <Content Include="client\buys\js\urgentProduct.js" />
+    <Content Include="client\buys\myBuyBackOrder.html" />
+    <Content Include="client\buys\myBuyCheckedOrder.html" />
+    <Content Include="client\buys\myBuyCheckedOrderDetail.html" />
+    <Content Include="client\buys\myBuyFinishOrder.html" />
+    <Content Include="client\buys\myBuyOrder.html" />
+    <Content Include="client\buys\myBuyOrderDetail.html" />
+    <Content Include="client\buys\myBuyOrderView.html" />
+    <Content Include="client\buys\myBuyProductSelect.html" />
+    <Content Include="client\buys\myBuySupplier.html" />
+    <Content Include="client\buys\myBuyUncheckOrder.html" />
+    <Content Include="client\buys\myBuyUncheckOrderDetail.html" />
+    <Content Include="client\buys\myBuyUnfinishOrder.html" />
+    <Content Include="client\buys\myBuyUnpayOrder.html" />
+    <Content Include="client\buys\myBuyUnstockInOrder.html" />
+    <Content Include="client\buys\statistics.html" />
+    <Content Include="client\buys\urgentProduct.html" />
+    <Content Include="client\commons\category.html" />
+    <Content Include="client\commons\index.html" />
+    <Content Include="client\commons\js\userCategory.js" />
+    <Content Include="client\commons\js\userProduct.js" />
+    <Content Include="client\commons\js\userProductImage.js" />
+    <Content Include="client\commons\js\userQuery.js" />
+    <Content Include="client\commons\js\userStockIn.js" />
+    <Content Include="client\commons\js\userStockOut.js" />
+    <Content Include="client\commons\product.html" />
+    <Content Include="client\commons\productImage.html" />
+    <Content Include="client\commons\query.html" />
+    <Content Include="client\commons\stockIn.html" />
+    <Content Include="client\commons\stockOut.html" />
+    <Content Include="client\index.html" />
+    <Content Include="client\password.html" />
+    <Content Include="client\products\index.html" />
+    <Content Include="client\products\js\userProduct.js" />
+    <Content Include="client\products\js\userProductImage.js" />
+    <Content Include="client\products\product.html" />
+    <Content Include="client\products\productImage.html" />
+    <Content Include="client\salesFinance\financeSaleAfterOrder.html" />
+    <Content Include="client\salesFinance\financeSaleAfterOrderDetail.html" />
+    <Content Include="client\salesFinance\financeSaleFinishedOrderDetail.html" />
+    <Content Include="client\salesFinance\financeSaleFinishOrder.html" />
+    <Content Include="client\salesFinance\financeSaleOrder.html" />
+    <Content Include="client\salesFinance\financeSaleOrderDetail.html" />
+    <Content Include="client\salesFinance\financeSaleReceive.html" />
+    <Content Include="client\salesFinance\index.html" />
+    <Content Include="client\salesFinance\js\financeSaleAfterOrder.js" />
+    <Content Include="client\salesFinance\js\financeSaleFinishOrder.js" />
+    <Content Include="client\salesFinance\js\financeSaleOrder.js" />
+    <Content Include="client\salesFinance\js\financeSaleOrderDetail.js" />
+    <Content Include="client\salesFinance\js\financeSaleReceive.js" />
+    <Content Include="client\salesStatistics\chart.html" />
+    <Content Include="client\salesStatistics\index.html" />
+    <Content Include="client\salesStatistics\js\statisticsOrderDetail.js" />
+    <Content Include="client\salesStatistics\js\statisticsProduct.js" />
+    <Content Include="client\salesStatistics\statistics.html" />
+    <Content Include="client\salesStatistics\statisticsOrderDetail.html" />
+    <Content Include="client\salesStatistics\statisticsProduct.html" />
+    <Content Include="client\salesWarehouses\index.html" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleFinisheOrder.js" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleOrderDetail.js" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleShipOrder.js" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleStockedOrder.js" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleStockingOrder.js" />
+    <Content Include="client\salesWarehouses\js\warehouseSaleTrack.js" />
+    <Content Include="client\salesWarehouses\warehouseSaleFinisheOrder.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleFinisheOrderDetail.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleShipOrder.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleShipOrderDetail.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleStockedOrder.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleStockedOrderDetail.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleStockingOrder.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleStockingOrderDetail.html" />
+    <Content Include="client\salesWarehouses\warehouseSaleTrack.html" />
+    <Content Include="client\sales\chart.html" />
+    <Content Include="client\sales\index.html" />
+    <Content Include="client\sales\js\mySaleFinishOrder.js" />
+    <Content Include="client\sales\js\mySaleNotReceiveOrder.js" />
+    <Content Include="client\sales\js\mySaleOrder.js" />
+    <Content Include="client\sales\js\mySaleOrderDetail.js" />
+    <Content Include="client\sales\js\mySaleOrderView.js" />
+    <Content Include="client\sales\js\mySaleProductSelect.js" />
+    <Content Include="client\sales\js\mySaleShipedOrder.js" />
+    <Content Include="client\sales\js\mySaleStockingOrder.js" />
+    <Content Include="client\sales\js\mySaleUnshipOrder.js" />
+    <Content Include="client\sales\mySaleFinishOrder.html" />
+    <Content Include="client\sales\mySaleNotReceiveOrder.html" />
+    <Content Include="client\sales\mySaleOrder.html" />
+    <Content Include="client\sales\mySaleOrderDetail.html" />
+    <Content Include="client\sales\mySaleOrderView.html" />
+    <Content Include="client\sales\mySaleProductSelect.html" />
+    <Content Include="client\sales\mySaleShipedOrder.html" />
+    <Content Include="client\sales\mySaleStockingOrder.html" />
+    <Content Include="client\sales\mySaleUnshipOrder.html" />
+    <Content Include="client\sales\saleConfig.html" />
+    <Content Include="client\sales\statistics.html" />
+    <Content Include="client\static\aliFont\demo.css" />
+    <Content Include="client\static\aliFont\demo_index.html" />
+    <Content Include="client\static\aliFont\iconfont.css" />
+    <Content Include="client\static\aliFont\iconfont.js" />
+    <Content Include="client\static\aliFont\iconfont.svg" />
+    <Content Include="client\static\css\default.css" />
+    <Content Include="client\static\css\font.css" />
+    <Content Include="client\static\css\jquery-confirm.min.css" />
+    <Content Include="client\static\css\layuiReset.css" />
+    <Content Include="client\static\css\loading.css" />
+    <Content Include="client\static\css\upload.css" />
+    <Content Include="client\static\css\xadmin.css" />
+    <Content Include="client\static\css\ztree.css" />
+    <Content Include="client\static\fonts\iconfont.svg" />
+    <Content Include="client\static\images\aiwrap.png" />
+    <Content Include="client\static\images\bg.png" />
+    <Content Include="client\static\images\logo.jpg" />
+    <Content Include="client\static\images\nopic.jpg" />
+    <Content Include="client\static\images\ztreeBtn.png" />
+    <Content Include="client\static\js\echarts.min.js" />
+    <None Include="client\static\js\jquery-3.3.1.intellisense.js" />
+    <Content Include="client\static\js\jquery-3.3.1.js" />
+    <Content Include="client\static\js\jquery-3.3.1.min.js" />
+    <Content Include="client\static\js\jquery-3.3.1.slim.js" />
+    <Content Include="client\static\js\jquery-3.3.1.slim.min.js" />
+    <Content Include="client\static\js\jquery-confirm.min.js" />
+    <Content Include="client\static\js\jquery-ext-user.js" />
+    <Content Include="client\static\js\my-login.js" />
+    <Content Include="client\static\js\xadmin.js" />
+    <Content Include="client\static\Plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="client\static\Plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="client\static\Plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="client\static\Plugins\bui\css\bs3\bui-min.css" />
+    <Content Include="client\static\Plugins\bui\css\bs3\bui.css" />
+    <Content Include="client\static\Plugins\bui\css\bs3\dpl-min.css" />
+    <Content Include="client\static\Plugins\bui\css\bs3\dpl.css" />
+    <Content Include="client\static\Plugins\bui\css\bui-min.css" />
+    <Content Include="client\static\Plugins\bui\css\build.xml" />
+    <Content Include="client\static\Plugins\bui\css\dpl-min.css" />
+    <Content Include="client\static\Plugins\bui\css\main-min.css" />
+    <Content Include="client\static\Plugins\bui\css\main.css" />
+    <Content Include="client\static\Plugins\bui\css\page-min.css" />
+    <Content Include="client\static\Plugins\bui\css\page.css" />
+    <Content Include="client\static\Plugins\bui\css\prettify.css" />
+    <Content Include="client\static\Plugins\bui\img\calendar-200-300.gif" />
+    <Content Include="client\static\Plugins\bui\img\chart.png" />
+    <Content Include="client\static\Plugins\bui\img\checkbox.gif" />
+    <Content Include="client\static\Plugins\bui\img\check_icon-100-100.gif" />
+    <Content Include="client\static\Plugins\bui\img\hide_list.png" />
+    <Content Include="client\static\Plugins\bui\img\icon-806-614.png" />
+    <Content Include="client\static\Plugins\bui\img\left-slib.gif" />
+    <Content Include="client\static\Plugins\bui\img\load-16-16.gif" />
+    <Content Include="client\static\Plugins\bui\img\main-nav-bg.png" />
+    <Content Include="client\static\Plugins\bui\img\main-nav-bg1.png" />
+    <Content Include="client\static\Plugins\bui\img\menu-500-188.png" />
+    <Content Include="client\static\Plugins\bui\img\menu.jpg" />
+    <Content Include="client\static\Plugins\bui\img\nav.jpg" />
+    <Content Include="client\static\Plugins\bui\img\nav_selected.png" />
+    <Content Include="client\static\Plugins\bui\img\radio_icon-64-40.gif" />
+    <Content Include="client\static\Plugins\bui\img\resource.jpg" />
+    <Content Include="client\static\Plugins\bui\img\separator-2-340.gif" />
+    <Content Include="client\static\Plugins\bui\img\sprite-469-300.png" />
+    <Content Include="client\static\Plugins\bui\img\tab-140-120.gif" />
+    <Content Include="client\static\Plugins\bui\img\table-191-450.gif" />
+    <Content Include="client\static\Plugins\bui\img\tool-sprites.png" />
+    <Content Include="client\static\Plugins\bui\img\tree.gif" />
+    <Content Include="client\static\Plugins\bui\img\tree_icon-80-100.gif" />
+    <Content Include="client\static\Plugins\bui\img\ui-img-view-height.jpg" />
+    <Content Include="client\static\Plugins\bui\img\ui-img-view-height.png" />
+    <Content Include="client\static\Plugins\bui\img\ui-img-view-width.jpg" />
+    <Content Include="client\static\Plugins\bui\img\ui-img-view-width.png" />
+    <Content Include="client\static\Plugins\bui\img\white_sprite-469-300.png" />
+    <Content Include="client\static\Plugins\bui\js\bui-min.js" />
+    <Content Include="client\static\Plugins\bui\js\bui.js" />
+    <Content Include="client\static\Plugins\bui\js\chart-min.js" />
+    <Content Include="client\static\Plugins\bui\js\common\build.xml" />
+    <Content Include="client\static\Plugins\bui\js\common\main-min.js" />
+    <Content Include="client\static\Plugins\bui\js\common\main.js" />
+    <Content Include="client\static\Plugins\bui\js\common\page-min.js" />
+    <Content Include="client\static\Plugins\bui\js\common\page.js" />
+    <Content Include="client\static\Plugins\bui\js\common\search-min.js" />
+    <Content Include="client\static\Plugins\bui\js\common\search.js" />
+    <Content Include="client\static\Plugins\bui\js\config-min.js" />
+    <Content Include="client\static\Plugins\bui\js\config.js" />
+    <Content Include="client\static\Plugins\bui\js\extensions\treegrid-min.js" />
+    <Content Include="client\static\Plugins\bui\js\extensions\treepicker-min.js" />
+    <Content Include="client\static\Plugins\bui\js\graphic-min.js" />
+    <Content Include="client\static\Plugins\bui\js\jquery-1.8.1.min.js" />
+    <Content Include="client\static\Plugins\bui\js\module\build.xml" />
+    <Content Include="client\static\Plugins\bui\js\prettify.js" />
+    <Content Include="client\static\Plugins\bui\js\slider-min.js" />
+    <Content Include="client\static\Plugins\cropbox\cropbox-min.js" />
+    <Content Include="client\static\Plugins\cropbox\cropbox.js" />
+    <Content Include="client\static\Plugins\echarts\demo.html" />
+    <Content Include="client\static\Plugins\echarts\echarts-all.js" />
+    <Content Include="client\static\Plugins\layui\css\layui.css" />
+    <Content Include="client\static\Plugins\layui\css\layui.mobile.css" />
+    <Content Include="client\static\Plugins\layui\css\modules\code.css" />
+    <Content Include="client\static\Plugins\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\icon.png" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\layer.css" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="client\static\Plugins\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="client\static\Plugins\layui\font\iconfont.svg" />
+    <Content Include="client\static\Plugins\layui\images\face\0.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\1.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\10.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\11.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\12.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\13.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\14.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\15.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\16.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\17.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\18.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\19.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\2.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\20.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\21.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\22.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\23.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\24.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\25.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\26.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\27.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\28.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\29.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\3.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\30.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\31.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\32.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\33.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\34.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\35.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\36.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\37.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\38.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\39.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\4.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\40.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\41.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\42.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\43.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\44.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\45.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\46.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\47.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\48.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\49.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\5.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\50.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\51.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\52.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\53.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\54.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\55.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\56.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\57.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\58.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\59.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\6.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\60.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\61.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\62.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\63.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\64.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\65.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\66.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\67.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\68.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\69.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\7.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\70.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\71.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\8.gif" />
+    <Content Include="client\static\Plugins\layui\images\face\9.gif" />
+    <Content Include="client\static\Plugins\layui\layui.all.js" />
+    <Content Include="client\static\Plugins\select2\css\select2.css" />
+    <Content Include="client\static\Plugins\select2\css\select2.min.css" />
+    <Content Include="client\static\Plugins\select2\js\i18n\af.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ar.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\az.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\bg.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\bs.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ca.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\cs.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\da.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\de.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\dsb.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\el.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\en.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\es.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\et.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\eu.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\fa.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\fi.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\fr.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\gl.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\he.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\hi.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\hr.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\hsb.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\hu.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\hy.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\id.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\is.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\it.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ja.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\km.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ko.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\lt.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\lv.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\mk.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ms.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\nb.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\nl.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\pl.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ps.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\pt-BR.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\pt.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ro.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\ru.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\sk.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\sl.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\sr.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\sv.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\th.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\tr.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\uk.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\vi.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\zh-CN.js" />
+    <Content Include="client\static\Plugins\select2\js\i18n\zh-TW.js" />
+    <Content Include="client\static\Plugins\select2\js\select2.full.js" />
+    <Content Include="client\static\Plugins\select2\js\select2.full.min.js" />
+    <Content Include="client\static\Plugins\select2\js\select2.js" />
+    <Content Include="client\static\Plugins\select2\js\select2.min.js" />
+    <Content Include="client\static\Plugins\selectTree\selectTree.js" />
+    <Content Include="client\static\Plugins\Sortable\Sortable.js" />
+    <Content Include="client\static\Plugins\Sortable\Sortable.min.js" />
+    <Content Include="client\static\Plugins\TagsInput\jquery.tagsinput.min.css" />
+    <Content Include="client\static\Plugins\TagsInput\jquery.tagsinput.min.js" />
+    <Content Include="client\static\Plugins\treetable-lay\treetable.css" />
+    <Content Include="client\static\Plugins\treetable-lay\treetable.js" />
+    <Content Include="client\static\Plugins\ui-choose\icon-selected.png" />
+    <Content Include="client\static\Plugins\ui-choose\ui-choose.css" />
+    <Content Include="client\static\Plugins\ui-choose\ui-choose.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\emotion.css" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\emotion.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\0.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\bface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\cface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\fface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\jxface2.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\neweditor-tab-bg.png" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\tface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\wface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\emotion\images\yface.gif" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\formula\formula.css" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\formula\formula.html" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\formula\formula.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\formula\images\formula.png" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\image\image.css" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\image\image.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\image\images\close.png" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\image\images\upload1.png" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\image\images\upload2.png" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\link\link.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\map\map.html" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\map\map.js" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\images\center_focus.jpg" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\images\left_focus.jpg" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\images\none_focus.jpg" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\images\right_focus.jpg" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\video.css" />
+    <Content Include="client\static\Plugins\umeditor\dialogs\video\video.js" />
+    <Content Include="client\static\Plugins\umeditor\index.html" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\en.js" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\addimage.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\background.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\button.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\copy.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\deletedisable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\deleteenable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\imglabel.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\listbackground.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\localimage.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\music.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\rotateleftdisable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\rotateleftenable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\rotaterightdisable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\rotaterightenable.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\en\images\upload.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\images\copy.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\images\imglabel.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\images\localimage.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\images\music.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\images\upload.png" />
+    <Content Include="client\static\Plugins\umeditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\css\umeditor.css" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\css\umeditor.min.css" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\caret.png" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\close.png" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\icons.gif" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\icons.png" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\ok.gif" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\pop-bg.png" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\spacer.gif" />
+    <Content Include="client\static\Plugins\umeditor\themes\default\images\videologo.gif" />
+    <Content Include="client\static\Plugins\umeditor\umeditor.config.js" />
+    <Content Include="client\static\Plugins\umeditor\umeditor.js" />
+    <Content Include="client\static\Plugins\umeditor\umeditor.min.js" />
+    <Content Include="client\static\Plugins\zTree\css\awesomeStyle\awesome.css" />
+    <Content Include="client\static\Plugins\zTree\css\awesomeStyle\img\loading.gif" />
+    <Content Include="client\static\Plugins\zTree\css\demo.css" />
+    <Content Include="client\static\Plugins\zTree\css\metroStyle\img\line_conn.png" />
+    <Content Include="client\static\Plugins\zTree\css\metroStyle\img\loading.gif" />
+    <Content Include="client\static\Plugins\zTree\css\metroStyle\img\metro.gif" />
+    <Content Include="client\static\Plugins\zTree\css\metroStyle\img\metro.png" />
+    <Content Include="client\static\Plugins\zTree\css\metroStyle\metroStyle.css" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\loading.gif" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="client\static\Plugins\zTree\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="client\static\Plugins\zTree\js\jquery-1.4.4.min.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.all.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.all.min.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.core.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.core.min.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.excheck.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.excheck.min.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.exedit.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.exedit.min.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.exhide.js" />
+    <Content Include="client\static\Plugins\zTree\js\jquery.ztree.exhide.min.js" />
+    <Content Include="client\static\readme.html" />
+    <Content Include="client\static\templates\buyOrder.html" />
+    <Content Include="client\static\templates\buyOrderStockIn.html" />
+    <Content Include="client\static\templates\saleOrder.html" />
+    <Content Include="client\sysAccountCurrency\account.html" />
+    <Content Include="client\sysAccountCurrency\currency.html" />
+    <Content Include="client\sysAccountCurrency\index.html" />
+    <Content Include="client\sysAccountCurrency\js\userAccount.js" />
+    <Content Include="client\sysAccountCurrency\js\userCurrency.js" />
+    <Content Include="client\systems\buyCheck.html" />
+    <Content Include="client\systems\company.html" />
+    <Content Include="client\systems\imageWater.html" />
+    <Content Include="client\systems\index.html" />
+    <Content Include="client\sysUserRoles\index.html" />
+    <Content Include="client\sysUserRoles\js\userUser.js" />
+    <Content Include="client\sysUserRoles\js\userUserRole.js" />
+    <Content Include="client\sysUserRoles\user.html" />
+    <Content Include="client\sysUserRoles\userRole.html" />
+    <Content Include="Css\bootstrap-grid.css" />
+    <Content Include="Css\bootstrap-grid.min.css" />
+    <Content Include="Css\bootstrap-reboot.css" />
+    <Content Include="Css\bootstrap-reboot.min.css" />
+    <Content Include="Css\bootstrap-v3.3.7.css" />
+    <Content Include="Css\bootstrap.css" />
+    <Content Include="Css\bootstrap.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Log4Net.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="robots.txt" />
+    <Content Include="Css\bootstrap.min.css.map" />
+    <Content Include="Css\bootstrap.css.map" />
+    <Content Include="Css\bootstrap-reboot.min.css.map" />
+    <Content Include="Css\bootstrap-reboot.css.map" />
+    <Content Include="Css\bootstrap-grid.min.css.map" />
+    <Content Include="Css\bootstrap-grid.css.map" />
+    <Content Include="client\static\aliFont\iconfont.eot" />
+    <Content Include="client\static\aliFont\iconfont.json" />
+    <Content Include="client\static\aliFont\iconfont.ttf" />
+    <Content Include="client\static\aliFont\iconfont.woff" />
+    <Content Include="client\static\aliFont\iconfont.woff2" />
+    <Content Include="client\static\fonts\iconfont.eot" />
+    <Content Include="client\static\fonts\iconfont.ttf" />
+    <Content Include="client\static\fonts\iconfont.woff" />
+    <Content Include="client\static\js\jquery-3.3.1.min.map" />
+    <Content Include="client\static\js\jquery-3.3.1.slim.min.map" />
+    <Content Include="client\static\Plugins\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="client\static\Plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="client\static\Plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="client\static\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="client\static\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="client\static\Plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="client\static\Plugins\layui\font\iconfont.eot" />
+    <Content Include="client\static\Plugins\layui\font\iconfont.ttf" />
+    <Content Include="client\static\Plugins\layui\font\iconfont.woff" />
+    <Content Include="client\static\Plugins\zTree\css\awesomeStyle\awesome.less" />
+    <Content Include="client\static\Plugins\zTree\css\awesomeStyle\fa.less" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\live.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="static\css\base.css" />
+    <Content Include="static\css\default.css" />
+    <Content Include="static\css\font.css" />
+    <Content Include="static\css\index.css" />
+    <Content Include="static\css\jquery-confirm.min.css" />
+    <Content Include="static\css\layui.css" />
+    <Content Include="static\css\layuiReset.css" />
+    <Content Include="static\css\style.css" />
+    <Content Include="static\css\upload.css" />
+    <Content Include="static\css\xadmin.css" />
+    <Content Include="static\css\ztree.css" />
+    <Content Include="static\fonts\iconfont.svg" />
+    <Content Include="static\image\404.svg" />
+    <Content Include="static\image\awards_bg.png" />
+    <Content Include="static\image\checkbox.png" />
+    <Content Include="static\image\checkboxed.png" />
+    <Content Include="static\image\ding_icon.png" />
+    <Content Include="static\js\jquery-1.8.3.min.js" />
+    <Content Include="static\js\layui\css\layui.css" />
+    <Content Include="static\js\layui\css\layui.mobile.css" />
+    <Content Include="static\js\layui\css\modules\code.css" />
+    <Content Include="static\js\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="static\js\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="static\js\layui\css\modules\layer\default\icon.png" />
+    <Content Include="static\js\layui\css\modules\layer\default\layer.css" />
+    <Content Include="static\js\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="static\js\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="static\js\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="static\js\layui\font\iconfont.svg" />
+    <Content Include="static\js\layui\images\face\0.gif" />
+    <Content Include="static\js\layui\images\face\1.gif" />
+    <Content Include="static\js\layui\images\face\10.gif" />
+    <Content Include="static\js\layui\images\face\11.gif" />
+    <Content Include="static\js\layui\images\face\12.gif" />
+    <Content Include="static\js\layui\images\face\13.gif" />
+    <Content Include="static\js\layui\images\face\14.gif" />
+    <Content Include="static\js\layui\images\face\15.gif" />
+    <Content Include="static\js\layui\images\face\16.gif" />
+    <Content Include="static\js\layui\images\face\17.gif" />
+    <Content Include="static\js\layui\images\face\18.gif" />
+    <Content Include="static\js\layui\images\face\19.gif" />
+    <Content Include="static\js\layui\images\face\2.gif" />
+    <Content Include="static\js\layui\images\face\20.gif" />
+    <Content Include="static\js\layui\images\face\21.gif" />
+    <Content Include="static\js\layui\images\face\22.gif" />
+    <Content Include="static\js\layui\images\face\23.gif" />
+    <Content Include="static\js\layui\images\face\24.gif" />
+    <Content Include="static\js\layui\images\face\25.gif" />
+    <Content Include="static\js\layui\images\face\26.gif" />
+    <Content Include="static\js\layui\images\face\27.gif" />
+    <Content Include="static\js\layui\images\face\28.gif" />
+    <Content Include="static\js\layui\images\face\29.gif" />
+    <Content Include="static\js\layui\images\face\3.gif" />
+    <Content Include="static\js\layui\images\face\30.gif" />
+    <Content Include="static\js\layui\images\face\31.gif" />
+    <Content Include="static\js\layui\images\face\32.gif" />
+    <Content Include="static\js\layui\images\face\33.gif" />
+    <Content Include="static\js\layui\images\face\34.gif" />
+    <Content Include="static\js\layui\images\face\35.gif" />
+    <Content Include="static\js\layui\images\face\36.gif" />
+    <Content Include="static\js\layui\images\face\37.gif" />
+    <Content Include="static\js\layui\images\face\38.gif" />
+    <Content Include="static\js\layui\images\face\39.gif" />
+    <Content Include="static\js\layui\images\face\4.gif" />
+    <Content Include="static\js\layui\images\face\40.gif" />
+    <Content Include="static\js\layui\images\face\41.gif" />
+    <Content Include="static\js\layui\images\face\42.gif" />
+    <Content Include="static\js\layui\images\face\43.gif" />
+    <Content Include="static\js\layui\images\face\44.gif" />
+    <Content Include="static\js\layui\images\face\45.gif" />
+    <Content Include="static\js\layui\images\face\46.gif" />
+    <Content Include="static\js\layui\images\face\47.gif" />
+    <Content Include="static\js\layui\images\face\48.gif" />
+    <Content Include="static\js\layui\images\face\49.gif" />
+    <Content Include="static\js\layui\images\face\5.gif" />
+    <Content Include="static\js\layui\images\face\50.gif" />
+    <Content Include="static\js\layui\images\face\51.gif" />
+    <Content Include="static\js\layui\images\face\52.gif" />
+    <Content Include="static\js\layui\images\face\53.gif" />
+    <Content Include="static\js\layui\images\face\54.gif" />
+    <Content Include="static\js\layui\images\face\55.gif" />
+    <Content Include="static\js\layui\images\face\56.gif" />
+    <Content Include="static\js\layui\images\face\57.gif" />
+    <Content Include="static\js\layui\images\face\58.gif" />
+    <Content Include="static\js\layui\images\face\59.gif" />
+    <Content Include="static\js\layui\images\face\6.gif" />
+    <Content Include="static\js\layui\images\face\60.gif" />
+    <Content Include="static\js\layui\images\face\61.gif" />
+    <Content Include="static\js\layui\images\face\62.gif" />
+    <Content Include="static\js\layui\images\face\63.gif" />
+    <Content Include="static\js\layui\images\face\64.gif" />
+    <Content Include="static\js\layui\images\face\65.gif" />
+    <Content Include="static\js\layui\images\face\66.gif" />
+    <Content Include="static\js\layui\images\face\67.gif" />
+    <Content Include="static\js\layui\images\face\68.gif" />
+    <Content Include="static\js\layui\images\face\69.gif" />
+    <Content Include="static\js\layui\images\face\7.gif" />
+    <Content Include="static\js\layui\images\face\70.gif" />
+    <Content Include="static\js\layui\images\face\71.gif" />
+    <Content Include="static\js\layui\images\face\8.gif" />
+    <Content Include="static\js\layui\images\face\9.gif" />
+    <Content Include="static\js\layui\layui.all.js" />
+    <Content Include="static\js\layui\layui.js" />
+    <Content Include="static\js\layui\lay\modules\carousel.js" />
+    <Content Include="static\js\layui\lay\modules\code.js" />
+    <Content Include="static\js\layui\lay\modules\colorpicker.js" />
+    <Content Include="static\js\layui\lay\modules\element.js" />
+    <Content Include="static\js\layui\lay\modules\flow.js" />
+    <Content Include="static\js\layui\lay\modules\form.js" />
+    <Content Include="static\js\layui\lay\modules\jquery.js" />
+    <Content Include="static\js\layui\lay\modules\laydate.js" />
+    <Content Include="static\js\layui\lay\modules\layedit.js" />
+    <Content Include="static\js\layui\lay\modules\layer.js" />
+    <Content Include="static\js\layui\lay\modules\laypage.js" />
+    <Content Include="static\js\layui\lay\modules\laytpl.js" />
+    <Content Include="static\js\layui\lay\modules\mobile.js" />
+    <Content Include="static\js\layui\lay\modules\rate.js" />
+    <Content Include="static\js\layui\lay\modules\slider.js" />
+    <Content Include="static\js\layui\lay\modules\table.js" />
+    <Content Include="static\js\layui\lay\modules\transfer.js" />
+    <Content Include="static\js\layui\lay\modules\tree.js" />
+    <Content Include="static\js\layui\lay\modules\upload.js" />
+    <Content Include="static\js\layui\lay\modules\util.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Css\Site.css" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="static\js\layui\font\iconfont.eot" />
+    <Content Include="static\js\layui\font\iconfont.ttf" />
+    <Content Include="static\js\layui\font\iconfont.woff" />
+    <Content Include="static\js\layui\font\iconfont.woff2" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\ProductImage\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="static\files\ExportProduct.xlsx" />
+    <Content Include="static\files\ExportStocking.xlsx" />
+    <Content Include="static\files\ImportOrderProduct.xlsx" />
+    <Content Include="static\files\ImportProduct.xlsx" />
+    <Content Include="static\files\pi.xlsx" />
+    <Content Include="static\files\piAud.xlsx" />
+    <Content Include="static\files\piEur.xlsx" />
+    <Content Include="static\files\piGbp.xlsx" />
+    <Content Include="static\files\piRmb.xlsx" />
+    <Content Include="static\files\piUsd.xlsx" />
+    <Content Include="static\fonts\iconfont.eot" />
+    <Content Include="static\fonts\iconfont.ttf" />
+    <Content Include="static\fonts\iconfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client\systems\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OmsClient.Biz\OmsClient.Biz.csproj">
+      <Project>{56e50406-0923-4704-bc02-1b36105b80f5}</Project>
+      <Name>OmsClient.Biz</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OmsClient.Common\OmsClient.Common.csproj">
+      <Project>{cd283ec6-2dbf-4817-8089-29f480e9a037}</Project>
+      <Name>OmsClient.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OmsClient.DataAccess\OmsClient.DataAccess.csproj">
+      <Project>{c93d2113-6f11-4af1-a8af-fe388484a17f}</Project>
+      <Name>OmsClient.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OmsClient.Entity\OmsClient.Entity.csproj">
+      <Project>{46527105-e119-414e-b335-adbeafd6f856}</Project>
+      <Name>OmsClient.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <!--<ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55369</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://www.myproject.com/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>-->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55770/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('K:\Packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'K:\Packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('K:\Packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'K:\Packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('K:\Packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'K:\Packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets'))" />
+  </Target>
+  <Import Project="K:\Packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets" Condition="Exists('K:\Packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

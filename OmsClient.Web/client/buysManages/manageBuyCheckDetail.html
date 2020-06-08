@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody" id="orderBody"></div>
+
+        <div class="orderFooter">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt2 lh-30">
+                <button class="btn btn-primary btn-sm pull-right" id="btnCheck" type="button">审核</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 价格 -->
+    <script id="PriceEdit" type="text/html">
+        <div>
+            {{#  if(d.Price > d.PriceC) { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-close" title="采购价大于销售价"></i></span>
+            {{#  } else if(d.Price < d.PriceAvg/2 || d.Price < d.PriceC/5) { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-help" title="价格可能异常"></i></span>
+            {{#  } else { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-ok"></i></span>
+            {{#  } }}
+        </div>
+    </script>
+
+    <!-- 审核 -->
+    <div class="otherDialog hide" id="checking">
+        <form class="form-horizontal layui-form" lay-filter="checkingFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>审核</label>
+                    <div class="col-sm-10">
+                        <input type="radio" name="Pass" value="true" title="通过">
+                        <input type="radio" name="Pass" value="false" title="驳回">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Remark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit
+                            lay-filter="checkingBtnFilter">提交</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/manageBuyCheckDetail.js?v=20191209"></script>
+</body>
+
+</HTML>

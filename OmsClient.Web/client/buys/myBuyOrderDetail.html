@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .date {
+            width: 100% !important;
+        }
+
+        .txtQty {
+            width: 45px;
+            height: 25px;
+            padding: 1px 2px;
+        }
+
+        .txtPrice {
+            width: 50px;
+            height: 25px;
+            padding: 1px 2px;
+        }
+
+        .form-group {
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody">
+            <form class="form-horizontal layui-form" lay-filter="orderEditFormFilter" action="javascript:;">
+                <div class="box-body formDiv" id="formDiv">
+                    <div class="form-group hide divBack topborder">
+                        <label class="col-sm-1 control-label layui-bg-orange
+                        layui-bg-orange">驳回操作</label>
+                        <div class="col-sm-5">
+                                <span class="labelText" name="CheckUserName"></span>
+                        </div>
+                        <label class="col-sm-1 control-label layui-bg-orange
+                        layui-bg-orange">驳回时间</label>
+                        <div class="col-sm-5">
+                                <span class="labelText" name="CheckDate"></span>
+                        </div>
+                    </div>
+                    <div class="form-group hide divBack">
+                        <label class="col-sm-1 control-label layui-bg-orange
+                        layui-bg-orange">驳回原因</label>
+                        <div class="col-sm-11">
+                                <span class="labelText" name="CheckRemark"></span>
+                        </div>
+                    </div>
+                    <br class="divBack">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"><i class="red">*</i>标题</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" name="Title" type="text" required lay-verify="required"
+                                placeholder="方便自己区分订单(仅自己可见)，如：某某客户的订单" />
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>币种</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="CurrencyId" required lay-verify="required" lay-ignore>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label">汇率</label>
+                        <div class="col-sm-2">
+                            <span class="labelText" id="CurrencyRate"></span>
+                            <a href="javascript:;" id="updateRate">更新汇率</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"><i class="red">*</i>预计到货</label>
+                        <div class="col-sm-2">
+                            <input class="form-control date" name="ArrivalsDate" type="text" required
+                                lay-verify="required" />
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>运费</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="ShipFeight" type="text" required lay-verify="required"
+                                placeholder="与订单币种相同" />
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>其他费用</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="ShipFee" type="text" required lay-verify="required"
+                                placeholder="与订单币种相同" />
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>折扣费用</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="Discount" type="text" required lay-verify="required"
+                                placeholder="与订单币种相同" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"><i class="red">*</i>发货方式</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="DefaultShip" type="text" required lay-verify="required"
+                                placeholder="" />
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>结款方式</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="DefaultSettlement" required lay-verify="required|select"
+                                lay-ignore>
+                                <option value="0">请选择</option>
+                                <optgroup label="先付款后发货">
+                                    <option value="1">付款后发货</option>
+                                    <option value="2">自提并付款</option>
+                                </optgroup>
+                                <optgroup label="先收货后付款">
+                                    <option value="3">收货后付款</option>
+                                    <option value="4">周结</option>
+                                    <option value="5">半月结</option>
+                                    <option value="6">月结</option>
+                                    <option value="7">季结</option>
+                                    <option value="8">半年结</option>
+                                    <option value="9">年结</option>
+                                </optgroup>
+                                <optgroup label="其他">
+                                    <option value="10">其他</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label"><i class="red">*</i>付款账号</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" name="DefaultAccount" type="text" required lay-verify="required"
+                                placeholder="告诉财务供应商银行账号" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">订单备注</label>
+                        <div class="col-sm-11">
+                            <textarea class="form-control" name="DefaultRemark" placeholder="告诉仓库收货注意事项"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"><i class="red">*</i>联系人</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierName" type="text" required lay-verify="required" placeholder="供应商联系人" />
+                        </div>
+                        <label class="col-sm-1 control-label">公司</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierCompany" type="text" placeholder="供应商公司" />
+                        </div>
+                        <label class="col-sm-1 control-label">固话</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierTel" type="text" placeholder="供应商固话" />
+                        </div>
+                        <label class="col-sm-1 control-label">手机</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierMobilePhone" type="text" placeholder="供应商手机" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">邮箱</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierEmail" type="text" placeholder="供应商邮箱" />
+                        </div>
+                        <label class="col-sm-1 control-label">QQ</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierQQ" type="text" placeholder="供应商QQ" />
+                        </div>
+                        <label class="col-sm-1 control-label">微信</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="SupplierWechat" type="text" placeholder="供应商微信" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">地址</label>
+                        <div class="col-sm-11">
+                            <textarea class="form-control" name="SupplierAddress" placeholder="供应商地址"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt3">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary btn-sm w-100" type="submit" lay-submit
+                                lay-filter="orderEditBtnFilter">保存</button>
+                            <button class="btn btn-primary btn-sm w-100 hide" type="submit" lay-submit
+                                lay-filter="orderPostBtnFilter">提交订单</button>
+                        </div>
+                        <input name="BuyOrderId" type="hidden" value>
+                    </div>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="box-body">
+                <div class="form-group">
+                    <div class="col-sm-6 mb10">
+                        <button class="btn btn-primary btn-sm w-25" id="btnAddProduct" type="button">添加产品</button>
+                        <button class="btn btn-primary btn-sm w-25 proShow hide" id="btnDeleteProduct"
+                            type="button">删除选择项</button>
+                    </div>
+                    <div class="col-sm-6 mb10">
+                        <button class="btn btn-primary btn-sm w-25 pull-right proShow hide" id="btnEditProduct"
+                            type="button">编辑</button>
+
+                        <button class="btn btn-primary btn-sm w-25 pull-right proEdit hide" id="btnPostProduct"
+                            type="button">提交保存</button>
+                        <button class="btn btn-default btn-sm w-25 pull-right proEdit hide mr10" id="btnCancelProduct"
+                            type="button">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <table id="tableList"></table>
+
+            <div class="box-body formDiv" id="counts">
+                <div class="form-group clearfix topborder">
+                    <label class="col-sm-2 control-label">产品重量：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountProductWeights"></span>
+                    </div>
+                    <label class="col-sm-2 control-label">产品数量：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountProductQtys"></span>
+                    </div>
+                    <label class="col-sm-2 control-label">产品小计：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountProductAmount"></span>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-sm-2 control-label">预算运费：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountShipFeight"></span>
+                    </div>
+                    <label class="col-sm-2 control-label">其他费用：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountShipFee"></span>
+                    </div>
+                    <label class="col-sm-2 control-label">折扣额：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountDiscount"></span>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-sm-2 control-label">合计：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountTotal"></span>
+                    </div>
+                    <label class="col-sm-2 control-label">合计(折合人民币)：</label>
+                    <div class="col-sm-2">
+                        <span class="labelText" id="CountTotalRmb"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orderFooter">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt2">
+                <button class="btn btn-success btn-sm pull-right" id="btnPost" type="button">提交订单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数量 -->
+    <script id="QtyEdit" type="text/html">
+        <div>
+            <span class="proShow">{{ d.Qty }}</span>
+            <input data-id="{{ d.BuyOrderProductId }}" class="proEdit txtQty hide" data-minqty="{{ d.OrderQty }}"
+                data-defaultvalue="{{ d.Qty }}" value="{{ d.Qty }}" required lay-verify="required|number" />
+        </div>
+    </script>
+
+    <!-- 价格 -->
+    <script id="PriceEdit" type="text/html">
+        <div>
+            {{#  if(d.Price > d.PriceC) { }}
+            <span class="proShow">{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-close" title="采购价大于销售价"></i></span>
+            {{#  } else if(d.Price < d.PriceAvg/2 || d.Price < d.PriceC/5) { }}
+            <span class="proShow">{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-help" title="价格可能异常"></i></span>
+            {{#  } else { }}
+            <span class="proShow">{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-ok"></i></span>
+            {{#  } }}
+            <input class="proEdit txtPrice hide" data-avgprice="{{ d.PriceAvg }}" data-minprice="{{ d.PriceC }}" data-defaultvalue="{{ d.Price }}"
+                value="{{ d.Price }}" required lay-verify="required|price" />
+        </div>
+    </script>
+    
+    <!-- 备注 -->
+    <script id="RemarkEdit" type="text/html">
+        <div>
+            <span class="proShow">{{ d.Remark }}</span>
+            <input class="proEdit txtRemark hide" data-defaultvalue="{{ d.Remark }}" value="{{ d.Remark }}" />
+        </div>
+    </script>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/myBuyOrderDetail.js?v=20191209"></script>
+</body>
+
+</HTML>

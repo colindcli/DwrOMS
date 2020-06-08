@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-10 col-sm-11 col-md-11 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">关键词</label>
+                    <input class="form-control input-sm mr-2" name="keyword" type="text" autofocus="autofocus" />
+
+                    <button class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+                </form>
+            </div>
+        </div>
+
+        <table id="tableList"></table>
+    </div>
+
+    <!-- 操作 -->
+    <script id="operator" type="text/html">
+        <button class="btn btn-primary btn-xs" type="button" lay-event="view">查看</button>
+    </script>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/mySaleUnshipOrder.js?v=20191209"></script>
+</body>
+
+</HTML>

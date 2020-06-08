@@ -1,0 +1,260 @@
+<form class="form-horizontal layui-form">
+    <div class="box-body formDiv" id="formDiv">
+        <div class="form-group topborder">
+            <label class="col-sm-1 control-label"><i class="red">*</i>单号</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="SaleOrderNumber"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>销售员</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="UserNickName"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>币种</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="CurrencyText"></span>
+            </div>
+            <label class="col-sm-1 control-label">汇率</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="CurrencyRate"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><i class="red">*</i>发货日期</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ShipDate"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>运费</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ShipFeight"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>其他费用</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ShipFee"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>折扣费用</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="Discount"></span>
+            </div>
+        </div>
+
+        <div class="form-group topborder">
+            <label class="col-sm-1 control-label"><i class="red">*</i>发货方式</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="DefaultShip"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>结款方式</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="DefaultSettlementName"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>收款账号</label>
+            <div class="col-sm-5">
+                <span class="labelText" name="DefaultAccount"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">订单备注</label>
+            <div class="col-sm-11">
+                <span class="labelText" name="DefaultRemark"></span>
+            </div>
+        </div>
+
+        <div class="form-group topborder">
+            <label class="col-sm-1 control-label"><i class="red">*</i>收货人</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ToConsignee"></span>
+            </div>
+            <label class="col-sm-1 control-label"><i class="red">*</i>电话</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ToTelphone"></span>
+            </div>
+            <label class="col-sm-1 control-label">公司</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ToCompanyName"></span>
+            </div>
+            <label class="col-sm-1 control-label">邮编</label>
+            <div class="col-sm-2">
+                <span class="labelText" name="ToZipcode"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><i class="red">*</i>收货地址</label>
+            <div class="col-sm-11">
+                <span class="labelText" name="ToAddress"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">发货备注</label>
+            <div class="col-sm-11">
+                <span class="labelText" name="ToRemark"></span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<br />
+<table id="tableList"></table>
+
+<div class="box-body formDiv" id="counts">
+    <div class="form-group clearfix topborder">
+        <label class="col-sm-2 control-label">产品重量：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountProductWeights"></span>
+        </div>
+        <label class="col-sm-2 control-label">销售数量：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountProductQtys"></span>
+        </div>
+        <label class="col-sm-2 control-label">产品小计：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountProductAmount"></span>
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">预算运费：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountShipFeight"></span>
+        </div>
+        <label class="col-sm-2 control-label">其他费用：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountShipFee"></span>
+        </div>
+        <label class="col-sm-2 control-label">折扣额：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountDiscount"></span>
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">合计：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountTotal"></span>
+        </div>
+        <label class="col-sm-2 control-label">合计(折合人民币)：</label>
+        <div class="col-sm-2">
+            <span class="labelText" id="CountTotalRmb"></span>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<form class="form-horizontal layui-form">
+    <div class="box-body formDiv">
+        <div class="form-group topborder">
+            <div class="col-sm-8 lh-30 text-center">
+                <div class="row">
+                    <div class="col-sm-12 layui-bg-red">收款记账</div>
+                </div>
+                <div class="row">
+                    <table id="financeTableList" lay-filter="financeTableList">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'AccountInfo', align: 'left'}">账户</th>
+                                <th lay-data="{field:'Amount', width: 90, align: 'left' }">金额</th>
+                                <th lay-data="{field:'TranFee', width: 60, align: 'left' }">费用</th>
+                                <th lay-data="{field:'CurrencyRate', width: 50, align: 'left'}">汇率</th>
+                                <th lay-data="{field:'TransactionNumber', align: 'left'}">交易号</th>
+                                <th lay-data="{field:'Remark', align: 'left'}">备注</th>
+                                <th lay-data="{field:'CreateName', width: 80, align: 'left'}">操作人</th>
+                                <th
+                                    lay-data="{field:'CreateDate', width: 110, align: 'left', templet: '<div>{{ d.CreateDate.ToDatetime() }}</div>' }">
+                                    日期</th>
+                            </tr>
+                        </thead>
+                        <tbody id="financeRow"></tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="pull-left">收款状态：<span id="receiveStatus"
+                                style="padding: 2px 5px; border-radius: 2px;"></span></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="pull-right">扣除费用合计(人民币)：<span id="financeTotal"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="row">
+                    <div class="col-sm-12 layui-bg-blue lh-30 text-center">备货记录</div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">开始备货</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockStartInfo"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">完成备货</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockEndInfo"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<form class="form-horizontal layui-form">
+    <div class="box-body formDiv">
+        <div class="form-group topborder">
+            <div class="col-sm-8 lh-30 text-center">
+                <div class="row">
+                    <div class="col-sm-12 layui-bg-green">快递物流</div>
+                </div>
+                <div class="row">
+                    <table id="trackTableList" lay-filter="trackTableList">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'TrackName', align: 'left'}">快递名称</th>
+                                <th lay-data="{field:'TrackNumber', align: 'left' }">快递单号</th>
+                                <th lay-data="{field:'Feight', width: 80, align: 'left'}">运费</th>
+                                <th lay-data="{field:'CurrencyRate', width: 80, align: 'left'}">汇率</th>
+                                <th lay-data="{field:'TrackRemark', align: 'left'}">备注</th>
+                                <th lay-data="{field:'CreateName', width: 80, align: 'left'}">操作人</th>
+                                <th
+                                    lay-data="{field:'CreateDate', width: 110, align: 'left', templet: '<div>{{ d.CreateDate.ToDatetime() }}</div>' }">
+                                    创建时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trackRow"></tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="pull-right">运费合计(人民币)：<span id="trackTotal"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="row">
+                    <div class="col-sm-12 layui-bg-blue lh-30 text-center">发货记录</div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">发货日期</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockShipDate"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">发货备注</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockRemark"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">出库时间</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockOutDate"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 control-label">出库操作</label>
+                    <div class="col-sm-8">
+                        <span class="labelText" id="StockOutName"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

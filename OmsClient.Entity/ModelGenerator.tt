@@ -1,0 +1,251 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template hostspecific="True" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data.dll" #>
+<#@ assembly name="System.Configuration.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Linq" #>
+<#
+    /*Entity�����ռ�*/
+    Namespace = "OmsClient.Entity";
+    /*connectionStrings��nameֵ*/
+    ConnectionStringName = "DefaultConnectionString";
+    /*Config·��*/
+    ConfigPath = Host.ResolveAssemblyReference("$(SolutionDir)") + $@"\OmsClient.Web\Web.config";
+#>
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace <#=Namespace#>
+{
+<#
+var list = GetDataList();
+var tables = GetTables(list);
+foreach (var table in tables)
+{
+    var columns = GetColumns(list, table);
+#>
+    /// <summary>
+    /// <#=table.SchemaName#>.<#=table.TableName#>
+    /// </summary>
+    [Table("<#=table.TableName#>", Schema = "<#=table.SchemaName#>")]
+    public partial class <#=table.AliasTableName ?? table.TableName#>
+    {
+<#
+        foreach (var item in columns)
+        {
+#>
+        /// <summary>
+        /// <#=item.Remark#>
+        /// </summary>
+<#
+        if(item.IsPrimaryKey)
+        {
+            if(item.IsPkRequired){
+#>
+        [Required]
+<#
+            }
+#>
+        [Key]
+<#
+        }
+#>
+        public virtual <#=item.DataType#> <#=item.ColumnName#> { get; set; }
+<#
+        }
+#>
+    }
+
+<#
+}
+#>
+}
+
+<#+
+        public string ConnectionStringName = "";
+        public string ConfigPath = "";
+        public string Namespace = "";
+        public List<TableColumn> GetColumns(List<TableColumn> list, TableColumn li)
+        {
+            return list.Where(p => string.Equals(li.TableName, p.TableName, StringComparison.OrdinalIgnoreCase) &&
+                                    string.Equals(li.SchemaName, p.SchemaName, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        public List<TableColumn> GetTables(List<TableColumn> list)
+        {
+            var items = new List<TableColumn>();
+            foreach (var li in list)
+            {
+                if (items.Exists(p =>
+                    string.Equals(li.TableName, p.TableName, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(li.SchemaName, p.SchemaName, StringComparison.OrdinalIgnoreCase)))
+                {
+                    continue;
+                }
+                //����
+                if (items.Exists(p =>
+                    string.Equals(li.TableName, p.TableName, StringComparison.OrdinalIgnoreCase)))
+                {
+                    li.AliasTableName = li.TableName + li.SchemaName.First().ToString().ToUpper() +
+                                        li.SchemaName.Substring(1);
+                }
+                items.Add(li);
+            }
+
+            return items;
+        }
+
+        public class TableColumn
+        {
+            public string SchemaName { get; set; }
+            public string TableName { get; set; }
+            /// <summary>
+            /// ����
+            /// </summary>
+            public string AliasTableName { get; set; }
+            public string ColumnName { get; set; }
+            public long MaxLength { get; set; }
+            public bool IsPrimaryKey { get; set; }
+            public bool IsNullable { get; set; }
+            public string Remark { get; set; }
+            public string DataType { get; set; }
+            public bool IsIncrement { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool IsPkRequired { get; set; }
+        }
+
+        public string GetPropertyType(string sqlType, bool isNullable)
+        {
+            string sysType = "string";
+            switch (sqlType)
+            {
+                case "bigint":
+                    sysType = isNullable ? "long?" : "long";
+                    break;
+                case "smallint":
+                    sysType = isNullable ? "short?" : "short";
+                    break;
+                case "int":
+                    sysType = isNullable ? "int?" : "int";
+                    break;
+                case "uniqueidentifier":
+                    sysType = isNullable ? "Guid?" : "Guid";
+                    break;
+                case "smalldatetime":
+                case "datetime":
+                case "datetime2":
+                case "date":
+                case "time":
+                    sysType = isNullable ? "DateTime?" : "DateTime";
+                    break;
+                case "float":
+                    sysType = isNullable ? "double?" : "double";
+                    break;
+                case "real":
+                    sysType = isNullable ? "float?" : "float";
+                    break;
+                case "numeric":
+                case "smallmoney":
+                case "decimal":
+                case "money":
+                    sysType = isNullable ? "decimal?" : "decimal";
+                    break;
+                case "tinyint":
+                    sysType = isNullable ? "byte?" : "byte";
+                    break;
+                case "bit":
+                    sysType = isNullable ? "bool?" : "bool";
+                    break;
+                case "image":
+                case "binary":
+                case "varbinary":
+                case "timestamp":
+                    sysType = "byte[]";
+                    break;
+                case "geography":
+                    sysType = "Microsoft.SqlServer.Types.SqlGeography";
+                    break;
+                case "geometry":
+                    sysType = "Microsoft.SqlServer.Types.SqlGeometry";
+                    break;
+            }
+            return sysType;
+        }
+
+        public List<TableColumn> GetDataList()
+        {
+            var map = new ExeConfigurationFileMap()
+            {
+                ExeConfigFilename = ConfigPath
+            };
+            var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+            var connStr = config.ConnectionStrings.ConnectionStrings["DefaultConnectionString"].ToString();
+            using (var db = new SqlConnection(connStr))
+            {
+                db.Open();
+                var tb = new DataTable();
+                var da = new SqlDataAdapter(@"
+WITH tbs AS(
+SELECT SCHEMA_ID(OBJECT_SCHEMA_NAME(o.object_id)) schemaId,OBJECT_SCHEMA_NAME(o.object_id) schemaName,o.object_id,OBJECT_NAME(o.object_id) tableName FROM sys.objects o 
+WHERE o.type IN('U','V')
+),
+--������
+pk AS(
+SELECT i.object_id,ic.column_id,c.name,i.is_primary_key FROM sys.indexes i 
+INNER JOIN sys.objects o ON i.object_id=o.object_id AND o.type IN('U','V')
+INNER JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id
+INNER JOIN sys.columns c ON i.object_id = c.object_id AND ic.column_id = c.column_id
+WHERE i.is_primary_key=1
+),
+li AS(
+SELECT o.schemaName,o.tableName,c.column_id columnId,c.name columnName,c.max_length maxLength,ISNULL(p.is_primary_key, 0) isPrimaryKey,c.is_nullable isNullable,ISNULL(ep.value, '') remark,t.name dataType,CASE WHEN ic.object_id IS NOT NULL THEN 1 ELSE 0 END isIncrement FROM sys.columns c 
+INNER JOIN tbs o ON c.object_id = o.object_id
+INNER JOIN sys.types t ON c.user_type_id=t.user_type_id
+LEFT JOIN pk p ON c.object_id = p.object_id AND c.column_id = p.column_id
+LEFT JOIN sys.extended_properties ep ON ep.major_id=c.object_id AND ep.minor_id=c.column_id
+LEFT JOIN sys.identity_columns ic ON c.object_id = ic.object_id AND c.column_id = ic.column_id
+)
+SELECT * FROM li t ORDER BY t.schemaName ASC,t.tableName ASC,t.columnId ASC;", db);
+                da.Fill(tb);
+                db.Close();
+
+                var items = new List<TableColumn>();
+                foreach (DataRow row in tb.Rows)
+                {
+                    var item = new TableColumn()
+                    {
+                        SchemaName = row["SchemaName"].ToString(),
+                        TableName = row["TableName"].ToString(),
+                        ColumnName = row["ColumnName"].ToString(),
+                        MaxLength = long.Parse(row["MaxLength"].ToString()),
+                        IsPrimaryKey = bool.Parse(row["IsPrimaryKey"].ToString()),
+                        IsNullable = bool.Parse(row["IsNullable"].ToString()),
+                        Remark = row["Remark"].ToString(),
+                        DataType = row["DataType"].ToString(),
+                        IsIncrement = int.Parse(row["IsIncrement"].ToString()) == 1,
+                    };
+                    items.Add(item);
+                }
+                //
+                foreach (var item in items)
+                {
+                    item.TableName = item.TableName.First().ToString().ToUpper() + item.TableName.Substring(1);
+                    item.ColumnName = item.ColumnName.First().ToString().ToUpper() + item.ColumnName.Substring(1);
+                    item.IsPkRequired = item.IsPrimaryKey &&
+                                        !item.IsIncrement &&
+                                        (string.Equals(item.DataType, "bigint", StringComparison.OrdinalIgnoreCase) ||
+                                        string.Equals(item.DataType, "int", StringComparison.OrdinalIgnoreCase));
+                    item.DataType = GetPropertyType(item.DataType, item.IsNullable);
+                }
+                return items;
+            }
+        }
+ #>

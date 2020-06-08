@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .delRow {
+            text-decoration-line: line-through;
+            color: #ccc;
+        }
+
+        .disRow {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-10 col-sm-11 col-md-11 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">关键词</label>
+                    <input class="form-control input-sm mr-2" name="keyword" type="text" autofocus="autofocus" />
+
+                    <button class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+                </form>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1 mt2">
+                <button class="btn btn-primary btn-sm pull-right" id="btnAdd" type="button">添加</button>
+            </div>
+        </div>
+
+        <table id="tableList"></table>
+    </div>
+
+    <!-- 操作 -->
+    <script id="operator" type="text/html">
+        <button class="btn btn-primary btn-xs" type="button" lay-event="edit">编辑</button>
+        <button class="btn btn-primary btn-xs" type="button" lay-event="pwd">改密码</button>
+        <button class="btn btn-danger btn-xs" type="button" lay-event="del">删除</button>
+    </script>
+
+    <!-- 状态 -->
+    <script id="Status" type="text/html">
+        {{#  if(d.Status == 1) { }}
+        <span>有效</span>
+        {{#  } else if(d.Status == 2) { }}
+        <span class="disRow">禁用</span>
+        {{#  } else if(d.Status == 3) { }}
+        <span class="delRow">删除</span>
+        {{#  } }}
+    </script>
+
+    <!-- 添加 -->
+    <div class="otherDialog hide" id="add">
+        <form class="form-horizontal layui-form" lay-filter="addFormFilter" action="javascript:;">
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>业务角色</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="UserRoleId" required lay-verify="required" lay-ignore>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>邮箱</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserEmail" type="text" required lay-verify="required"
+                            placeholder="系统登录账号" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>密码</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserPwd" type="text" required lay-verify="required"
+                            placeholder="系统登录密码" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>英文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserNickName" type="text" required lay-verify="required"
+                            placeholder="系统业务数据记录使用该字段" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>中文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserChnName" type="text" required lay-verify="required"
+                            placeholder="不做业务数据记录，仅用于辨识账号使用人" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>系统管理</label>
+                    <div class="col-sm-10">
+                        <input name="IsAdmin" type="checkbox" value="true" lay-ignore>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Remark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">状态</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Status" required lay-verify="required" lay-ignore>
+                            <option value="1">有效</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right w-25" type="submit" lay-submit
+                    lay-filter="addBtnFilter">保存</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 编辑 -->
+    <div class="otherDialog hide" id="info">
+        <form class="form-horizontal layui-form" lay-filter="editFormFilter" action="javascript:;">
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>业务角色</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="UserRoleId" required lay-verify="required" lay-ignore>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>邮箱</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserEmail" type="text" required lay-verify="required"
+                            placeholder="系统登录账号" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>英文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserNickName" type="text" required lay-verify="required"
+                            placeholder="系统业务数据记录使用该字段" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>中文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserChnName" type="text" required lay-verify="required"
+                            placeholder="不做业务数据记录，仅用于辨识账号使用人" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>系统管理</label>
+                    <div class="col-sm-10">
+                        <input name="IsAdmin" type="checkbox" value="true" lay-ignore>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Remark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">状态</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Status" required lay-verify="required" lay-ignore>
+                            <option value="1">有效</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right w-25" type="submit" lay-submit
+                    lay-filter="editBtnFilter">保存</button>
+                <input name="UserId" type="hidden" value>
+            </div>
+        </form>
+    </div>
+
+    <!-- 改密码 -->
+    <div class="otherDialog hide" id="pwd">
+        <form class="form-horizontal layui-form" lay-filter="pwdFormFilter" action="javascript:;">
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>邮箱</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserEmail" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>英文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserNickName" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>中文名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserChnName" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>密码</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="UserPwd" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right w-25" type="submit" lay-submit
+                    lay-filter="pwdBtnFilter">修改</button>
+                <input name="UserId" type="hidden" value>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/userUser.js"></script>
+</body>
+
+</HTML>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody" id="orderBody"></div>
+
+        <div class="orderFooter">
+            <div class="col-xs-6 col-sm-6 col-md-6 mt2">
+                <button class="btn btn-primary btn-sm" id="btnTrack" type="button">快递物流</button>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 mt2">
+                <button class="btn btn-success btn-sm w-25 pull-right" id="btnStockOut" type="button">发货出库</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 发货出库 -->
+    <div class="otherDialog hide" id="stockOut">
+        <form class="form-horizontal layui-form" lay-filter="stockOutFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>发货日期</label>
+                    <div class="col-sm-10">
+                        <input class="form-control date" name="StockShipDate" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">发货备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="StockRemark" placeholder=""></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit lay-filter="stockOutBtnFilter">发货出库</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/warehouseSaleOrderDetail.js?v=20191209"></script>
+</body>
+
+</HTML>

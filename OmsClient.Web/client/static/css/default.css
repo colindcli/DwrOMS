@@ -1,0 +1,417 @@
+﻿@import url("../Plugins/layui/css/layui.css");
+@import url("layuiReset.css");
+@import url("jquery-confirm.min.css");
+@import url("../Plugins/bootstrap/css/bootstrap.min.css");
+@import url("../Plugins/zTree/css/zTreeStyle/zTreeStyle.css");
+@import url("ztree.css");
+@import url("upload.css");
+@import url("../aliFont/iconfont.css");
+
+html,
+body {
+    background: #ffffff;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+.bodyContent {
+    padding: 3px;
+    height: 100%;
+}
+
+.searchBar {
+    margin: 0;
+    overflow-y: auto;
+    background: #eee;
+    padding: 3px 0px;
+}
+
+.lh-30 {
+    line-height: 30px;
+}
+
+.hide {
+    display: none !important;
+}
+
+.jconfirm .jconfirm-box.jconfirm-animation-news {
+    transform: rotate(400deg) scale(0);
+}
+
+.jconfirm .jc-bs3-container {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-bottom: 0 !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 0px !important;
+}
+
+.pt3 {
+    padding-top: 3px !important;
+}
+
+.mt2 {
+    padding-top: 2px !important;
+}
+
+.mt3 {
+    padding-top: 3px !important;
+}
+
+.otherDialog {
+    overflow-x: hidden;
+    margin: 15px 0;
+}
+
+.jconfirm .jconfirm-box div.jconfirm-title-c,
+.jconfirm-content {
+    text-align: left;
+}
+
+.date {
+    width: 100px !important;
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.dateRange {
+    width: 160px !important;
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.bottomSave {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: #f6f6f6;
+    border-top: 1px solid #e8e9ee;
+    padding: 12px;
+    z-index: 9999;
+    text-align: right;
+    padding-right: 18px;
+}
+
+.mb60px {
+    margin-bottom: 75px !important;
+    margin-top: 15px;
+}
+
+.red {
+    color: #f00;
+}
+
+/* reset bootstrap */
+.ml-0 {
+    margin-left: 0px !important;
+}
+
+.mr-0 {
+    margin-right: 0px !important;
+}
+
+.mt-0 {
+    margin-top: 0px !important;
+}
+
+.mb-0 {
+    margin-bottom: 0px !important;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.pb-0 {
+    padding-bottom: 0px !important;
+}
+
+.rowlr {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.edui-editor-body .edui-body-container,
+.edui-container {
+    width: 100% !important;
+}
+
+.datetime {
+    width: 160px;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.box-footer {
+    margin: 15px;
+}
+
+.jconfirm .jconfirm-holder>div {
+    text-align: center;
+}
+
+.jconfirm .jconfirm-holder>div .jconfirm-box-container {
+    margin: 0 auto;
+    float: none;
+}
+
+.orderContent {
+    padding: 3px;
+    height: 100%;
+}
+
+.orderBody {
+    padding-bottom: 50px;
+}
+
+.orderFooter {
+    position: fixed;
+    bottom: 0px;
+    right: 0;
+    width: 100%;
+    background: #d2d6de;
+    padding: 5px;
+}
+
+.labelText {
+    line-height: 30px;
+    font-size: 12px;
+}
+.ml10{
+    margin-left: 10px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.w150{
+    width: 150px;
+}
+.pb100{
+    padding-bottom: 100px;
+}
+.hr0{
+    margin: 0 auto;
+}
+.mbt8{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.mr10{
+    margin-right: 10px;
+}
+
+/* 操作弹框 */
+.optDiv {
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 100px;
+    right: 63px;
+    background: #efefef;
+    width: 200px;
+    height: 200px;
+    padding: 12px;
+    color: #555;
+}
+
+.optDiv .optRow {
+    line-height: 26px;
+    height: 26px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.optDiv .optTxt {
+    float: left;
+    width: 40px;
+    display: inline-block;
+}
+
+.optDiv .optVal {
+    float: left;
+    width: 60px;
+    padding: 1px 8px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 0px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.optDiv .optRowRe{
+    height: auto !important;
+    line-height: auto !important;
+}
+.optDiv .optRemark {
+    float: left;
+    width: 130px;
+    padding: 1px 8px;
+    height: 68px;
+    line-height: 18px;
+    font-size: 12px;
+    border-radius: 0px;
+    border: 1px solid #ccc;
+}
+.optDiv .optClose{
+    float: right;
+}
+
+
+/* 显示各币种价格 */
+.priceConvert{
+    cursor: pointer;
+}
+.convDiv {
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 100px;
+    right: 63px;
+    background: #efefef;
+    padding: 5px;
+    color: #555;
+    width: 120px;
+}
+
+.convDiv .convRow {
+    line-height: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.convDiv .convTxt {
+    float: left;
+    width: 46px;
+    display: inline-block;
+    background: #fff;
+    padding: 0px 3px;
+    margin-right: 5px;
+}
+
+.convDiv .convVal {
+    float: left;
+    padding: 1px 3px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    margin-top: -2px;
+}
+
+/* 在途挂起 */
+.showInTransitQty, .showHoldQty{
+    cursor: pointer;
+}
+
+/* 显示数量 */
+.orderDiv{
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 100px;
+    right: 63px;
+    background: #efefef;
+    padding: 1px;
+    color: #555;
+    width: 280px;
+}
+
+.orderDiv table{
+    border-top: 1px solid #ccc !important;
+    border-left: 1px solid #ccc !important;
+    width: 100%;
+    line-height: 25px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.orderDiv table th{
+    border-right: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    padding: 1px 2px;
+    text-align: center;
+}
+
+.orderDiv table td{
+    border-right: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    padding: 1px 2px;
+}
+
+#counts .control-label,
+.stockin .control-label{
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+    font-weight: normal;
+    background: #efefefef;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+input[type="checkbox"] {
+    height: 22px;
+    width: 22px;
+}
+
+.unpay, .notbegin{
+    color: #999;
+}
+
+.pay{
+    color: #0c0;
+}
+
+option{
+    font-weight: normal !important;
+}
+
+.orderContent{
+    overflow-y: scroll !important;
+}
+
+.orderContent .layui-table th{
+    padding: 0 !important;
+    height: 20px !important;
+    line-height: 20px !important;
+}
+
+.thisOrder{
+    color: #FF5722;
+}
+
+.nosame{
+    color: #ff5722;
+}
+
+.isNewRow{
+    color: #999;
+    text-align: center;
+}
+
+.selectRowNew{
+    background-color: #ffeb3b2e;
+}
+
+.table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border-bottom-width: 1px !important;
+}
+
+.layui-tab-title .iconfont{
+    font-size: 14px;
+    margin-right: 2px;
+}

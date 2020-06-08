@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /App_Data/
+Disallow: /Bin/
+Disallow: /Logs/
+Disallow: /App_Data/
+Disallow: /*.config$

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody" id="orderBody"></div>
+
+        <div class="orderFooter">
+            <div class="col-xs-4 col-sm-4 col-md-4 mt2">
+                <button class="btn btn-primary btn-sm" id="btnAddPay" type="button">收款记账</button>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 mt2 lh-30">
+                <form class="form-horizontal layui-form" action="javascript:;">
+                    <button class="btn btn-success btn-sm pull-right" id="btnPostUnpay" type="submit" lay-submit
+                    lay-filter="postUnpayBtnFilter">确认提交</button>
+                    <select class="form-control pull-right" name="SelectPay" required lay-verify="required|select" style="width: 120px; margin-right: 8px;"
+                        lay-ignore>
+                        <option value="0">请选择</option>
+                        <optgroup label="先发货后收款">
+                            <option value="1">标志为后收款</option>
+                        </optgroup>
+                        <optgroup label="先收款后发货">
+                            <option value="2">已收到全部款项</option>
+                        </optgroup>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/financeSaleOrderDetail.js?v=20191209"></script>
+</body>
+
+</HTML>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title>列表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+    <style>
+        .box-body {
+            margin-bottom: 56px;
+        }
+
+        .box-footer {
+            position: fixed;
+            bottom: 0px;
+            z-index: 99999;
+            width: 100%;
+            background: #f6f6f6;
+            border-top: 1px solid #e8e9ee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="searchBar">
+            <div class="col-xs-6 col-sm-6 col-md-6 mt2">
+                <form class="form-inline layui-form" action="javascript:;">
+                    <label class="mr-2">分类</label>
+                    <select class="form-control pt3 mr-2" name="CategoryId" lay-ignore></select>
+
+                    <label class="mr-2">关键词</label>
+                    <input class="form-control input-sm mr-2" name="keyword" type="text" autofocus="autofocus" />
+
+                    <button class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="searchFormFilter">搜索</button>
+                    <button class="btn btn-primary btn-sm " type="submit" lay-submit
+                        lay-filter="exportFormFilter">导出Excel</button>
+                </form>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 mt2">
+                <button class="btn btn-primary btn-sm pull-right ml10" id="btnAdd" type="button">添加</button>
+                <button class="btn btn-primary btn-sm pull-right ml10" id="btnImport" type="button">批量导入</button>
+            </div>
+        </div>
+
+        <table id="tableList"></table>
+    </div>
+
+    <!-- 操作 -->
+    <script id="operator" type="text/html">
+        <button class="btn btn-primary btn-xs" type="button" lay-event="edit">编辑</button>
+        <button class="btn btn-danger btn-xs" type="button" lay-event="del">删除</button>
+    </script>
+
+    <!-- 添加 -->
+    <div class="otherDialog hide" id="add">
+        <form class="form-horizontal layui-form" lay-filter="addFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>分类</label>
+                    <div class="col-sm-10">
+                        <select class="form-control pt3 mr-2" name="CategoryId" required lay-verify="required"
+                            lay-ignore></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>商品编码</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="ProductSku" type="text" required lay-verify="required"
+                            placeholder="每个商品编码唯一" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>商品名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="ProductName" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">商品规格</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="ProductSpecification"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">商品描述</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="ProductRemark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>重量(克)</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="ProductWeight" type="text" required
+                            lay-verify="required|number" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>起订数量</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="OrderQty" type="text" required
+                            lay-verify="required|number" value="1" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价1</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price1" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价10</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price10" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价100</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price100" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">存仓位置</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="AreaPosition" type="text" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit
+                            lay-filter="addBtnFilter">保存</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <span class="label label-default">备注1：产品数量由采购单入库后增加数量，销售单出库后扣除数量。</span>
+                        <span class="label label-default">备注2：售价1是单件销售价格，售价10代表10件销售价格，售价100代表100件销售价格。</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- 编辑 -->
+    <div class="otherDialog hide" id="info">
+        <form class="form-horizontal layui-form" lay-filter="editFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>分类</label>
+                    <div class="col-sm-10">
+                        <select class="form-control pt3 mr-2" name="CategoryId" required lay-verify="required"
+                            lay-ignore></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>商品编码</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="ProductSku" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>商品名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="ProductName" type="text" required lay-verify="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">商品规格</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="ProductSpecification"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">商品描述</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="ProductRemark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>重量(克)</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="ProductWeight" type="text" required
+                            lay-verify="required|number" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>起订数量</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="OrderQty" type="text" required
+                            lay-verify="required|number" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价1</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price1" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价10</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price10" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                    <label class="col-sm-2 control-label"><i class="red">*</i>售价100</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="Price100" type="text" required lay-verify="required"
+                            placeholder="人民币" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">存仓位置</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="AreaPosition" type="text" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit
+                            lay-filter="editBtnFilter">保存</button>
+                        <input name="ProductId" type="hidden" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- 批量导入 -->
+    <div class="otherDialog hide" id="import">
+        <form class="form-horizontal layui-form" lay-filter="importFormFilter" action="javascript:;">
+            <div class="box-body mb-0">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">导入模板</label>
+                    <div class="col-sm-10">
+                        <a class="labelText" href="/static/files/ImportProduct.xlsx" target="_blank">下载</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>分类</label>
+                    <div class="col-sm-10">
+                        <select class="form-control pt3 mr-2" name="CategoryId" required lay-verify="required"
+                            lay-ignore></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><i class="red">*</i>选择文件</label>
+                    <div class="col-sm-10">
+                        <input type="file" id="FileUpload" value="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right w-100" type="submit" lay-submit
+                            lay-filter="importBtnFilter">开始导入</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script src="../static/Plugins/selectTree/selectTree.js"></script>
+
+    <script src="js/userProduct.js?v=20191209"></script>
+</body>
+
+</HTML>

@@ -1,0 +1,81 @@
+/* 图片 */
+
+.uploadImg {
+    border-radius: 5px;
+    background: #fff;
+}
+
+.uploadImg .imgList {
+    padding: 0;
+    background: #fff;
+}
+
+.uploadImg .thumbnail {
+    width: 180px;
+    height: 180px;
+    padding: 10px;
+    margin: 15px 15px 0px 0;
+    float: left;
+}
+
+.uploadImg .thumbnail img {
+    width: 158px;
+    height: 158px;
+    border: 1px solid #eee;
+}
+
+.uploadImg .thumbnail i {
+    position: relative;
+    top: -170px;
+    float: right;
+    margin-right: -8px;
+    cursor: pointer;
+    color: #337ab7;
+}
+
+.uploadImg button, .uploadFile button{
+    height: 30px !important;
+    line-height: 30px !important;
+}
+
+/* 附件 */
+
+.uploadFile .fileList {
+    padding: 12px 0 0 0;
+}
+
+.uploadFile .filerow {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 3px;
+    background: #efefef;
+    height: 34px;
+    overflow: hidden;
+    line-height: 22px;
+    min-width: 120px;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+.uploadFile .filerow span {
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    top: -5px;
+}
+
+.uploadFile .filerow a {
+    color: #555;
+    max-width: 210px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.uploadFile .filerow i {
+    color: #000;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}

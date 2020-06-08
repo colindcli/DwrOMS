@@ -1,0 +1,97 @@
+﻿@using DwrUtility
+@model List<ProductImage>
+@{
+    Layout = null;
+    var isUser = (bool) ViewBag.IsUser;
+    var product = (Product) ViewBag.Product;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>[@(product.ProductSku)]@(product.ProductName)</title>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#showimage .bd1 img").on("click", function () {
+                window.open($(this).attr("src"));
+            }).on("mouseover", function () {
+                $("#showimage .bd2 img").attr("src", $(this).attr("src"));
+            });
+            if ($("#showimage .bd1 img").length > 0) {
+                $("#showimage .bd2 img").attr("src", $("#showimage .bd1 img").first().attr("src"));
+            } else { $("body").html("Sorry, no picture!"); }
+        });
+    </script>
+    <style type="text/css">
+        #showimage {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #showimage .bd1 {
+            height: 68px;
+            border-bottom: 1px solid #999;
+            white-space: nowrap;
+            overflow: auto;
+            overflow-y: hidden;
+        }
+
+        #showimage .bd1 span {
+            padding: 3px;
+            margin: 3px 0px 3px 3px;
+            border: 1px solid #999;
+            height: 51px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        #showimage .bd1 span img {
+            width: 64px;
+            height: 48px;
+            border: 0px;
+            margin: 1px;
+            padding: 0px;
+            cursor: pointer;
+        }
+
+        #showimage .bd2 {
+            padding: 5px;
+            margin: 4px;
+            border: 1px solid #999;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body id="showimage">
+<div class="bd1">
+    @{
+        foreach (var item in Model)
+        {
+            if (isUser || !item.PathLogoImage.IsWhiteSpace())
+            {
+                <span>
+                    @{
+                        if (isUser)
+                        {
+                            <img src="@(item.PathImage)" />
+                        }
+                    }
+                    @{
+                        if (!item.PathLogoImage.IsWhiteSpace())
+                        {
+                            <img src="@(item.PathLogoImage)" />
+                        }
+                    }
+                </span>
+            }
+        }
+    }
+</div>
+<div class="bd2">
+    <img src="" />
+</div>
+</body>
+</html>

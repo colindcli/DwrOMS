@@ -1,0 +1,154 @@
+.layui-progress-bar {
+    background-color: #337ab7;
+}
+
+.layui-form-select dl dd.layui-this {
+    background-color: #337ab7;
+}
+
+.layui-form-checked,
+.layui-form-checked:hover {
+    border-color: #337ab7
+}
+
+.layui-form-checked span,
+.layui-form-checked:hover span {
+    /* background-color: #337ab7 */
+}
+
+.layui-form-checked i,
+.layui-form-checked:hover i {
+    color: #337ab7
+}
+
+.layui-form-checkbox[lay-skin=primary]:hover i {
+    border-color: #337ab7;
+}
+
+.layui-form-checked[lay-skin=primary] i {
+    border-color: #337ab7;
+    background-color: #337ab7;
+}
+
+.layui-form-onswitch {
+    border-color: #337ab7;
+    background-color: #337ab7
+}
+
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+    color: #337ab7
+}
+
+.layui-table-edit:focus {
+    border-color: #337ab7 !important
+}
+
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+    background-color: #337ab7;
+}
+
+.layui-nav .layui-nav-child dd.layui-this a,
+.layui-nav-child dd.layui-this {
+    background-color: #337ab7;
+}
+
+.layui-breadcrumb a:hover {
+    color: #337ab7 !important
+}
+
+.layui-tab-brief>.layui-tab-more li.layui-this:after,
+.layui-tab-brief>.layui-tab-title .layui-this:after {
+    border-bottom: 2px solid #337ab7
+}
+
+.layui-tab-card>.layui-tab-more .layui-this {
+    background: 0 0;
+    color: #337ab7
+}
+
+.layui-timeline-axis {
+    color: #337ab7;
+}
+
+.layui-laydate-footer span:hover {
+    color: #337ab7
+}
+
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover {
+    color: #337ab7
+}
+
+.laydate-day-mark::after {
+    background-color: #337ab7
+}
+
+.layui-laydate-footer span[lay-type=date] {
+    color: #337ab7
+}
+
+/* layui */
+
+.layui-layer-btn0 {
+    color: #ffffff !important;
+}
+
+.layui-table,
+.layui-table-view {
+    margin: 0 !important;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #337ab7 !important;
+}
+
+.layui-table-tips {
+    display: none;
+}
+
+.layui-form select {
+    padding: 5px !important;
+    border-radius: 3px;
+    color: #555;
+}
+
+.classSelect{
+    height: 34px !important;
+    width: auto !important;
+    margin-right: 5px;
+}
+
+.layui-layer-title {
+    text-align: left;
+}
+
+div .layui-laydate-content td.laydate-selected {
+    background-color: #c8e5ff;
+}
+
+div .laydate-selected:hover {
+    background-color: #7ebcf1 !important;
+}
+
+.layui-form-label {
+    width: 110px;
+}
+
+.form-horizontal .form-group .control-label{
+    background: #f6f6f6;
+    padding-bottom: 6px;
+    color: #9E9E9E;
+    font-size: 12px;
+}
+
+.form-horizontal .form-group input[type="checkbox"]{
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.layui-table-cell {
+    padding: 0 6px !important;
+}

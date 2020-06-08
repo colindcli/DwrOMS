@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="pt-4 pb-4">
+        <form class="form-horizontal layui-form mb60px" lay-filter="editFormFilter" action="javascript:;">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">公司名称</label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="PiCompanyName" type="text" placeholder="应用到导出PI公司字段" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">公司地址</label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="PiCompanyAddress" type="text" placeholder="应用到导出PI地址字段" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">联系方式</label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="PiMyContact" type="text" placeholder="应用到导出PI联系方式字段：如Tel: (86)00000000 Email: sale@compayn.com" />
+                </div>
+            </div>
+            <div class="bottomSave">
+                <button class="btn btn-primary w-25" type="submit" lay-submit lay-filter="editBtnFilter">保存</button>
+                <input type="hidden" name="SaleConfigId" />
+            </div>
+        </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script>
+        $(function () {
+            // 编辑器
+            $.getdata('/clientApi/UserSaleConfig/GetSaleConfig', {}, function (data) {
+                form.val("editFormFilter", $.formData(data));
+                win.formFocus('editFormFilter');
+
+                form.on("submit(editBtnFilter)", function (data) {
+                    $.postdata(
+                        "/clientApi/UserSaleConfig/UpdateSaleConfig",
+                        data.field,
+                        function (res) {
+                            if (res) {
+                                win.msg("更新成功");
+                            } else {
+                                win.alert('更新失败');
+                            }
+                        }
+                    );
+                    return false;
+                });
+            });
+        });
+    </script>
+</body>
+
+</HTML>

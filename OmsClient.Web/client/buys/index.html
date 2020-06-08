@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bodyContent">
+        <div class="layui-tab layui-tab-card" lay-filter="tabFilter">
+            <ul class="layui-tab-title">
+                <li class="layui-this"><span class="iconfont icondingdanchuli"></span>草稿<span class="num numop">-</span></li>
+                <li class="bch hide"><span class="iconfont icondingdanchuli"></span>已驳回<span class="num numop">-</span></li>
+                <li class="bch hide"><span class="iconfont icondingdanchuli"></span>待审核<span class="num">-</span></li>
+                <li class="bch hide"><span class="iconfont icondingdanchuli"></span>待提交<span class="num numop">-</span></li>
+                <li><span class="iconfont icondingdanchuli"></span>待付款<span class="num">-</span></li>
+                <li><span class="iconfont icondingdanchuli"></span>待入库<span class="num">-</span></li>
+                <li><span class="iconfont icondingdanchuli"></span>待完结<span class="num">-</span></li>
+                <li><span class="iconfont icondingdanchuli"></span>已完结<span class="num">-</span></li>
+
+                <li class="pull-right"><span class="iconfont icontongjifenxi"></span>图表分析</li>
+                <li class="pull-right"><span class="iconfont iconfenlei1"></span>采购统计</li>
+                <li class="pull-right">供应商管理</li>
+                <li class="pull-right">缺货产品</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;"></div>
+        </div>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+    <script>
+        $(function () {
+            var objBch = {
+                bch: window.parent.bch,
+                init: function(){
+                    var self = this;
+                    if(self.bch==1){
+                        $('.bch').removeClass('hide');
+                    }else{
+                        $('.bch').addClass('hide');
+                    }
+                }
+            };
+            objBch.init();
+
+            var objTab = {
+                version: '20191209',
+                init: function () {
+                    var self = this;
+                    self.iframe();
+
+                    element.on('tab', function (data) {
+                        self.tab(data.index);
+                    });
+                    self.tab(0);
+                },
+                iframe: function(){
+                    var self = this;
+                    var len = $('.layui-tab-title li').length;
+                    var arr = ['<div class="layui-tab-item layui-show"><iframe></iframe></div>'];
+                    for(var i = 1;i<len;i++){
+                        arr.push('<div class="layui-tab-item"><iframe></iframe></div>');
+                    }
+                    $('.layui-tab-content').html(arr.join(''));
+                },
+                tab: function (index) {
+                    var self = this;
+
+                    var href = '';
+                    switch(index){
+                        case 0:{
+                            href = 'myBuyOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 1:{
+                            href = 'myBuyBackOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 2:{
+                            href = 'myBuyUncheckOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 3:{
+                            href = 'myBuyCheckedOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 4:{
+                            href = 'myBuyUnpayOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 5:{
+                            href = 'myBuyUnstockInOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 6:{
+                            href = 'myBuyUnfinishOrder.html?v='+self.version;
+                            break;
+                        }
+                        case 7:{
+                            href = 'myBuyFinishOrder.html?v='+self.version;
+                            break;
+                        }
+                        //right
+                        case 8:{
+                            href = 'chart.html?v='+self.version;
+                            break;
+                        }
+                        case 9:{
+                            href = 'statistics.html?v='+self.version;
+                            break;
+                        }
+                        case 10:{
+                            href = 'myBuySupplier.html?v='+self.version;
+                            break;
+                        }
+                        case 11:{
+                            href = 'urgentProduct.html?v='+self.version;
+                            break;
+                        }
+                    }
+                    $('.layui-tab-content .layui-tab-item').eq(index).find('iframe').attr('src', href);
+                }
+            }
+            objTab.init();
+
+            //统计数量
+            var hasCheck = false;
+            var objNum = {
+                init: function(){
+                    var self = this;
+                    self.request();
+                    setInterval(() => {
+                        self.request();
+                    }, 60000);
+                },
+                request: function(){
+                    var self = this;
+                    $.getdata('/clientApi/UserBuyOrder/GetMyOrderNumber?hasCheck='+hasCheck, {}, function(res){
+                        $('.layui-tab-title .num').each(function(i, item){
+                            $(this).text(res[i]);
+                        });
+                    });
+                },
+            }
+            objNum.init();
+
+            //刷新
+            window.reloadNum = objNum.request;
+        });
+    </script>
+</body>
+
+</HTML>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="../static/css/default.css?v=20191209" rel="stylesheet">
+</head>
+
+<body>
+    <div class="orderContent">
+        <div class="orderBody" id="orderBody"></div>
+
+        <div class="orderFooter">
+            <div class="col-xs-4 col-sm-4 col-md-4 mt2">
+                <button class="btn btn-primary btn-sm" id="btnAddPay" type="button">付款记账</button>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 mt2 lh-30">
+                <form class="form-horizontal layui-form" lay-filter="postPayFormFilter" action="javascript:;">
+                    <button class="btn btn-success btn-sm pull-right"  type="submit" lay-submit
+                    lay-filter="postBtnFilter">完成付款</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 价格 -->
+    <script id="PriceEdit" type="text/html">
+        <div>
+            {{#  if(d.Price > d.PriceC) { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-close" title="采购价大于销售价"></i></span>
+            {{#  } else if(d.Price < d.PriceAvg/2 || d.Price < d.PriceC/5) { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-help" title="价格可能异常"></i></span>
+            {{#  } else { }}
+            <span>{{ d.Symbol+d.Price }}<i class="layui-icon layui-icon-ok"></i></span>
+            {{#  } }}
+        </div>
+    </script>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/Plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/Plugins/layui/layui.all.js"></script>
+    <script src="../static/js/jquery-confirm.min.js"></script>
+    <script src="../static/js/jquery-ext-user.js?v=20191209"></script>
+
+    <script src="js/financeBuyUnpayOrderDetail.js?v=20191209"></script>
+</body>
+
+</HTML>
