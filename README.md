@@ -4,11 +4,11 @@
 
 - tip: 点击图片查看大图
 
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/1.gif)
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/2.gif)
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/3.gif)
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/4.gif)
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/5.gif)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/1.gif)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/2.gif)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/3.gif)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/4.gif)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/5.gif)
 
 # 运行环境
 
@@ -28,8 +28,8 @@
 
 # 联系我们
 
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/chat.png)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/chat.png)
 
 # 赞助
 
-![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/pay.png)
+![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/pay.png)
