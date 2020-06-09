@@ -4,15 +4,20 @@
 
 - tip: 点击图片查看大图
 
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/1.gif?raw=true)
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/2.gif?raw=true)
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/3.gif?raw=true)
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/4.gif?raw=true)
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/5.gif?raw=true)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/1.gif)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/2.gif)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/3.gif)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/4.gif)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/5.gif)
 
 # 运行环境
 
 - IIS7+.Net4.6+SqlServer2008以上
+
+# 发布Git
+
+- Github: [https://github.com/colindcli/DwrOMS](https://github.com/colindcli/DwrOMS)
+- Gitee: [https://gitee.com/colindcli/DwrOMS](https://gitee.com/colindcli/DwrOMS)
 
 # 安装发布
 
@@ -23,8 +28,8 @@
 
 # 联系我们
 
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/chat.png?raw=true)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/chat.png)
 
 # 赞助
 
-![](https://github.com/colindcli/DwrOMS/blob/master/DbScript/img/pay.png?raw=true)
+![](https://raw.githubusercontent.com/colindcli/DwrOMS/master/DbScript/img/pay.png)
