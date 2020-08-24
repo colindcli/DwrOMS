@@ -59,7 +59,3 @@
 # 联系我们
 
 ![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/chat.png)
-
-# 赞助
-
-![](https://gitee.com/colindcli/DwrOMS/raw/master/DbScript/img/pay.png)
